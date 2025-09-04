@@ -1,23 +1,18 @@
-import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
-
-import { routeTree } from './router/routeTree.gen';
-
-const router = createRouter({ routeTree });
-
-declare module '@tanstack/react-router' {
-  interface Register {
-    router: typeof router;
-  }
-}
+import { RelayEnvironmentProvider } from 'react-relay';
+import { environment } from './relay/environment';
+import { RouterProvider } from './router/RouterProvider';
+import { QueryProvider } from './context/QueryContext';
 
 const rootElement = document.getElementById('root')!;
-if (!rootElement.innerHTML) {
-  const root = ReactDOM.createRoot(rootElement);
-  root.render(
-    <StrictMode>
-      <RouterProvider router={router} />
-    </StrictMode>
-  );
-}
+const root = ReactDOM.createRoot(rootElement);
+root.render(
+  <StrictMode>
+    <QueryProvider>
+      <RelayEnvironmentProvider environment={environment}>
+        <RouterProvider />
+      </RelayEnvironmentProvider>
+    </QueryProvider>
+  </StrictMode>
+);
