@@ -1,8 +1,24 @@
 import { Link, Outlet } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import { useState, useEffect } from 'react';
+import { graphql, useFragment } from 'react-relay';
+import type { Layout_viewer$key } from './__generated__/Layout_viewer.graphql';
 
-const Layout = () => {
+interface LayoutProps {
+  viewer: Layout_viewer$key;
+}
+
+const Layout = ({ viewer }: LayoutProps) => {
+  const data = useFragment(
+    graphql`
+      fragment Layout_viewer on User {
+        login
+        name
+      }
+    `,
+    viewer
+  );
+
   const [theme, setTheme] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('theme') || 'light';
@@ -42,6 +58,11 @@ const Layout = () => {
             About
           </Link>
         </div>
+        {data.login && (
+          <div className="text-sm text-gray-500">
+            Logged in as: <strong>{data.login}</strong> {data.name}
+          </div>
+        )}
         <button
           onClick={toggleTheme}
           className="px-4 py-2 rounded-md bg-tertiary text-background-inverse hover:bg-tertiary transition-colors duration-200"
