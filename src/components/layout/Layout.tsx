@@ -1,7 +1,9 @@
-import { Link, Outlet } from '@tanstack/react-router';
+import { Outlet } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { graphql, useFragment } from 'react-relay';
+import Button from '../Button';
+import NavLink from '../NavLink';
 import type { Layout_viewer$key } from './__generated__/Layout_viewer.graphql';
 
 interface LayoutProps {
@@ -43,21 +45,11 @@ const Layout = ({ viewer }: LayoutProps) => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-primary transition-colors duration-300">
-      <nav className="p-4 bg-secondary text-primary shadow-md flex justify-between items-center">
+    <div className="min-h-screen text-primary transition-colors duration-300">
+      <nav className="p-4 shadow-md flex justify-between items-center">
         <div className="flex gap-4">
-          <Link
-            to="/"
-            className="text-lg font-semibold hover:text-tertiary transition-colors duration-200"
-          >
-            Top Repos
-          </Link>
-          <Link
-            to="/about"
-            className="text-lg font-semibold hover:text-tertiary transition-colors duration-200"
-          >
-            My Repos
-          </Link>
+          <NavLink to="/">Top Repos</NavLink>
+          <NavLink to="/about">My Repos</NavLink>
         </div>
         {data.login && (
           <div className="flex items-center gap-2 text-sm text-gray-500">
@@ -69,14 +61,11 @@ const Layout = ({ viewer }: LayoutProps) => {
             Logged in as: <strong>{data.login}</strong> {data.name}
           </div>
         )}
-        <button
-          onClick={toggleTheme}
-          className="px-4 py-2 rounded-md bg-tertiary text-background-inverse hover:bg-tertiary transition-colors duration-200"
-        >
+        <Button onClick={toggleTheme}>
           Toggle to {theme === 'light' ? 'Dark' : 'Light'}
-        </button>
+        </Button>
       </nav>
-      <hr className="border-tertiary" />
+      <hr className="border-gray-300 dark:border-gray-700" />
       <div className="p-4">
         <Outlet />
       </div>
