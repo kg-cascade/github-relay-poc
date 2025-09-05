@@ -14,6 +14,7 @@ const Layout = ({ viewer }: LayoutProps) => {
       fragment Layout_viewer on User {
         login
         name
+        avatarUrl
       }
     `,
     viewer
@@ -49,17 +50,22 @@ const Layout = ({ viewer }: LayoutProps) => {
             to="/"
             className="text-lg font-semibold hover:text-tertiary transition-colors duration-200"
           >
-            Home
+            Top Repos
           </Link>
           <Link
             to="/about"
             className="text-lg font-semibold hover:text-tertiary transition-colors duration-200"
           >
-            About
+            My Repos
           </Link>
         </div>
         {data.login && (
-          <div className="text-sm text-gray-500">
+          <div className="flex items-center gap-2 text-sm text-gray-500">
+            <img
+              src={data.avatarUrl || '/src/assets/cascade.svg'}
+              alt="User Avatar"
+              className="w-8 h-8 rounded-full"
+            />
             Logged in as: <strong>{data.login}</strong> {data.name}
           </div>
         )}

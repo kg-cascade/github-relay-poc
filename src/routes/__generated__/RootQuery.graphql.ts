@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0725d88275a1f268f3c69b2b613ab4e1>>
+ * @generated SignedSource<<82ea20a8a76dc3f3a8811456b47e2556>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -80,6 +80,13 @@ const node: ConcreteRequest = {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
+            "name": "avatarUrl",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
             "name": "id",
             "storageKey": null
           }
@@ -89,12 +96,12 @@ const node: ConcreteRequest = {
     ]
   },
   "params": {
-    "cacheID": "62d39caff8492d272c9e1a2c09e4cfea",
+    "cacheID": "00ac973abc758f9de3436a1536bbbcbc",
     "id": null,
     "metadata": {},
     "name": "RootQuery",
     "operationKind": "query",
-    "text": "query RootQuery {\n  viewer {\n    ...Layout_viewer\n    id\n  }\n}\n\nfragment Layout_viewer on User {\n  login\n  name\n}\n"
+    "text": "query RootQuery {\n  viewer {\n    ...Layout_viewer\n    id\n  }\n}\n\nfragment Layout_viewer on User {\n  login\n  name\n  avatarUrl\n}\n"
   }
 };
 

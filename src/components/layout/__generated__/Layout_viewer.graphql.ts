@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4b5fa87da0c4d172aa6499f2d6e4bcca>>
+ * @generated SignedSource<<6351a3cfeb7fffd646e33b37a6ed4d38>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,6 +11,7 @@
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type Layout_viewer$data = {
+  readonly avatarUrl: any;
   readonly login: string;
   readonly name: string | null | undefined;
   readonly " $fragmentType": "Layout_viewer";
@@ -39,12 +40,19 @@ const node: ReaderFragment = {
       "kind": "ScalarField",
       "name": "name",
       "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "avatarUrl",
+      "storageKey": null
     }
   ],
   "type": "User",
   "abstractKey": null
 };
 
-(node as any).hash = "c4e777e53f669ecaced01bd8e3f39a89";
+(node as any).hash = "050988e751733fb62dad9627764ce78b";
 
 export default node;
