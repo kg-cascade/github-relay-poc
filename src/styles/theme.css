@@ -1,168 +1,51 @@
-@import 'tailwindcss';
+:root {
+  --text: oklch(0.19 0.03 180);
+  --background: oklch(0.97 0.02 180);
 
-@layer base {
-  :root {
-    /* Core text/background */
-    --color-text: 1 24 19;
-    --color-background: 236 254 250;
+  --primary: oklch(0.88 0.14 168);
+  --primary-foreground: oklch(0.19 0.03 180);
 
-    /* UI Colors */
-    --color-primary: 22 248 184;
-    --color-primary-foreground: 1 24 19;
+  --secondary: oklch(0.78 0.11 250);
+  --secondary-foreground: oklch(0.19 0.03 180);
 
-    --color-secondary: 121 184 251;
-    --color-secondary-foreground: 1 24 19;
+  --accent: oklch(0.63 0.17 264);
+  --accent-foreground: oklch(1 0 0);
 
-    --color-accent: 72 125 249;
-    --color-accent-foreground: 255 255 255;
+  --success: oklch(0.74 0.14 152);
+  --success-foreground: oklch(1 0 0);
 
-    /* Status Colors */
-    --color-success: 34 197 94;
-    --color-success-foreground: 255 255 255;
+  --error: oklch(0.65 0.25 29);
+  --error-foreground: oklch(1 0 0);
 
-    --color-error: 239 68 68;
-    --color-error-foreground: 255 255 255;
+  --warning: oklch(0.83 0.18 84);
+  --warning-foreground: oklch(0.19 0.03 180);
 
-    --color-warning: 251 191 36;
-    --color-warning-foreground: 1 24 19;
-
-    --color-info: 59 130 246;
-    --color-info-foreground: 255 255 255;
-  }
-
-  .dark {
-    --color-text: 231 254 249;
-    --color-background: 1 19 15;
-
-    --color-primary: 7 233 169;
-    --color-primary-foreground: 1 24 19;
-
-    --color-secondary: 4 67 134;
-    --color-secondary-foreground: 231 254 249;
-
-    --color-accent: 6 59 183;
-    --color-accent-foreground: 255 255 255;
-
-    --color-success: 22 163 74;
-    --color-success-foreground: 231 254 249;
-
-    --color-error: 220 38 38;
-    --color-error-foreground: 255 255 255;
-
-    --color-warning: 202 138 4;
-    --color-warning-foreground: 1 24 19;
-
-    --color-info: 37 99 235;
-    --color-info-foreground: 255 255 255;
-  }
+  --info: oklch(0.69 0.18 259);
+  --info-foreground: oklch(1 0 0);
 }
 
-@layer utilities {
-  /* Background utilities */
-  .bg-primary {
-    background-color: rgb(var(--color-primary));
-  }
-  .bg-secondary {
-    background-color: rgb(var(--color-secondary));
-  }
-  .bg-accent {
-    background-color: rgb(var(--color-accent));
-  }
-  .bg-success {
-    background-color: rgb(var(--color-success));
-  }
-  .bg-error {
-    background-color: rgb(var(--color-error));
-  }
-  .bg-warning {
-    background-color: rgb(var(--color-warning));
-  }
-  .bg-info {
-    background-color: rgb(var(--color-info));
-  }
-  .bg-background {
-    background-color: rgb(var(--color-background));
-  }
+.dark {
+  --text: oklch(0.96 0.02 180);
+  --background: oklch(0.08 0.01 180);
 
-  /* Foreground (text) utilities */
-  .text-primary {
-    color: rgb(var(--color-primary-foreground));
-  }
-  .text-secondary {
-    color: rgb(var(--color-secondary-foreground));
-  }
-  .text-accent {
-    color: rgb(var(--color-accent-foreground));
-  }
-  .text-success {
-    color: rgb(var(--color-success-foreground));
-  }
-  .text-error {
-    color: rgb(var(--color-error-foreground));
-  }
-  .text-warning {
-    color: rgb(var(--color-warning-foreground));
-  }
-  .text-info {
-    color: rgb(var(--color-info-foreground));
-  }
-  .text-text {
-    color: rgb(var(--color-text));
-  }
+  --primary: oklch(0.84 0.13 168);
+  --primary-foreground: oklch(0.19 0.03 180);
 
-  /* Borders */
-  .border-primary {
-    border-color: rgb(var(--color-primary));
-  }
-  .border-secondary {
-    border-color: rgb(var(--color-secondary));
-  }
-  .border-accent {
-    border-color: rgb(var(--color-accent));
-  }
-  .border-success {
-    border-color: rgb(var(--color-success));
-  }
-  .border-error {
-    border-color: rgb(var(--color-error));
-  }
-  .border-warning {
-    border-color: rgb(var(--color-warning));
-  }
-  .border-info {
-    border-color: rgb(var(--color-info));
-  }
+  --secondary: oklch(0.34 0.09 250);
+  --secondary-foreground: oklch(0.96 0.02 180);
 
-  /* Ring colors */
-  .ring-primary {
-    --tw-ring-color: rgb(var(--color-primary));
-  }
-  .ring-error {
-    --tw-ring-color: rgb(var(--color-error));
-  }
-  .ring-success {
-    --tw-ring-color: rgb(var(--color-success));
-  }
+  --accent: oklch(0.41 0.15 264);
+  --accent-foreground: oklch(1 0 0);
 
-  /* Hover state variants */
-  .hover\:bg-primary:hover {
-    background-color: rgb(var(--color-primary));
-  }
-  .hover\:bg-error:hover {
-    background-color: rgb(var(--color-error));
-  }
-  .hover\:bg-success:hover {
-    background-color: rgb(var(--color-success));
-  }
+  --success: oklch(0.66 0.13 152);
+  --success-foreground: oklch(0.96 0.02 180);
 
-  /* Focus-visible state variants */
-  .focus-visible\:outline-primary:focus-visible {
-    outline-color: rgb(var(--color-primary));
-  }
-  .focus-visible\:outline-error:focus-visible {
-    outline-color: rgb(var(--color-error));
-  }
-  .focus-visible\:outline-success:focus-visible {
-    outline-color: rgb(var(--color-success));
-  }
+  --error: oklch(0.61 0.23 29);
+  --error-foreground: oklch(1 0 0);
+
+  --warning: oklch(0.72 0.17 84);
+  --warning-foreground: oklch(0.19 0.03 180);
+
+  --info: oklch(0.63 0.17 259);
+  --info-foreground: oklch(1 0 0);
 }
