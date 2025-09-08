@@ -3,7 +3,7 @@ import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import { useEffect, useState } from 'react';
 import { graphql, useFragment } from 'react-relay';
 import Button from '../Button';
-import NavLink from '../NavLink';
+import MainMenu from './MainMenu';
 import type { Layout_viewer$key } from './__generated__/Layout_viewer.graphql';
 
 interface LayoutProps {
@@ -47,10 +47,7 @@ const Layout = ({ viewer }: LayoutProps) => {
   return (
     <div className="min-h-screen text-primary transition-colors duration-300">
       <nav className="p-4 shadow-md flex justify-between items-center">
-        <div className="flex gap-4">
-          <NavLink to="/">Top Repos</NavLink>
-          <NavLink to="/about">My Repos</NavLink>
-        </div>
+        <MainMenu />
         {data.login && (
           <div className="flex items-center gap-2 text-sm text-gray-500">
             <img

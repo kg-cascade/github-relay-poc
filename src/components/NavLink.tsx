@@ -1,19 +1,21 @@
+import { cn } from '@/utils/cn'; // Upewnij się, że ścieżka do cn jest poprawna
 import { Link } from '@tanstack/react-router';
+import type { ReactNode } from 'react';
 
 interface NavLinkProps {
   to: string;
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   size?: 'sm' | 'md' | 'lg';
   colorScheme?:
     | 'primary'
     | 'secondary'
-    | 'danger'
     | 'accent'
     | 'success'
     | 'error'
     | 'warning'
-    | 'info';
+    | 'info'
+    | 'text';
 }
 
 const sizeClasses = {
@@ -23,27 +25,32 @@ const sizeClasses = {
 };
 
 const colorClasses = {
-  primary: 'text-primary hover:text-primary-foreground',
-  secondary: 'text-secondary hover:text-secondary-foreground',
-  danger: 'text-error hover:text-error-foreground',
-  accent: 'text-accent hover:text-accent-foreground',
-  success: 'text-success hover:text-success-foreground',
-  error: 'text-error hover:text-error-foreground',
-  warning: 'text-warning hover:text-warning-foreground',
-  info: 'text-info hover:text-info-foreground',
+  primary: 'text-primary',
+  secondary: 'text-secondary',
+  accent: 'text-accent',
+  success: 'text-success',
+  error: 'text-error',
+  warning: 'text-warning',
+  info: 'text-info',
+  text: 'text-text',
 };
 
 const NavLink: React.FC<NavLinkProps> = ({
   to,
   children,
-  className = '',
+  className,
   size = 'md',
   colorScheme = 'primary',
 }) => {
   return (
     <Link
       to={to}
-      className={`${sizeClasses[size]} font-semibold transition-colors duration-200 ${colorClasses[colorScheme]} ${className}`}
+      className={cn(
+        'font-semibold transition-colors duration-200 no-underline hover:no-underline hover:opacity-80',
+        sizeClasses[size],
+        colorClasses[colorScheme],
+        className
+      )}
     >
       {children}
     </Link>
