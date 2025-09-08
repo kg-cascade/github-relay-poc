@@ -25,7 +25,6 @@ const sizeClasses = {
 const getColorClasses = (color: string, variant: string) => {
   const bg = `bg-${color}`;
   const border = `border-${color}`;
-  const focusOutline = `focus-visible:outline-${color}`;
   const text = `text-${color}-foreground`;
 
   switch (variant) {

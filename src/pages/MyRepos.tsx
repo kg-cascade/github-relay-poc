@@ -1,6 +1,8 @@
-import { graphql, useLazyLoadQuery } from 'react-relay';
-import { RepositoryFragment } from '../fragments/RepositoryFragment';
+import { graphql, useLazyLoadQuery, useFragment } from 'react-relay';
 import type { MyReposQuery } from './__generated__/MyReposQuery.graphql';
+import { RepositoryFragment } from '../fragments/RepositoryFragment';
+import type { RepositoryFragment$key } from '../fragments/__generated__/RepositoryFragment.graphql';
+import type { RepositoryFragment$data } from '../fragments/__generated__/RepositoryFragment.graphql';
 
 function MyRepos() {
   const data = useLazyLoadQuery<MyReposQuery>(
@@ -21,10 +23,12 @@ function MyRepos() {
     {}
   );
 
+  const repositories = data.viewer.repositories.nodes?.filter(Boolean) || [];
+
   return (
     <div className="p-2">
       <h3 className="text-test text-2xl font-bold mb-4">My Repositories</h3>
-      {data.viewer.repositories.nodes.length > 0 ? (
+      {repositories.length > 0 ? (
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
             <thead className="bg-gray-200 dark:bg-gray-700">
@@ -44,21 +48,24 @@ function MyRepos() {
               </tr>
             </thead>
             <tbody>
-              {data.viewer.repositories.nodes.map((repo) => (
-                <tr
-                  key={repo.id}
-                  className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
-                >
-                  <td className="py-2 px-4">{repo.nameWithOwner}</td>
-                  <td className="py-2 px-4">
-                    {repo.description || 'No description'}
-                  </td>
-                  <td className="py-2 px-4">{repo.stargazerCount}</td>
-                  <td className="py-2 px-4">
-                    {repo.primaryLanguage?.name || 'N/A'}
-                  </td>
-                </tr>
-              ))}
+              {repositories.map((repoRef) => {
+                const repo: RepositoryFragment$data = useFragment(RepositoryFragment, repoRef as RepositoryFragment$key);
+                return (
+                  <tr
+                    key={repo.id}
+                    className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  >
+                    <td className="py-2 px-4">{repo.nameWithOwner}</td>
+                    <td className="py-2 px-4">
+                      {repo.description || 'No description'}
+                    </td>
+                    <td className="py-2 px-4">{repo.stargazerCount}</td>
+                    <td className="py-2 px-4">
+                      {repo.primaryLanguage?.name || 'N/A'}
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

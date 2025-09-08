@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<6b61c0a767bfa7897daed384f05f3fc6>>
+ * @generated SignedSource<<c9232b1b9445c65c419fb083c57fc68f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,30 +10,32 @@
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type TopReposQuery$variables = {
+export type TopReposPaginationQuery$variables = {
   count?: number | null | undefined;
   cursor?: string | null | undefined;
 };
-export type TopReposQuery$data = {
+export type TopReposPaginationQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"TopRepos_search">;
 };
-export type TopReposQuery = {
-  response: TopReposQuery$data;
-  variables: TopReposQuery$variables;
+export type TopReposPaginationQuery = {
+  response: TopReposPaginationQuery$data;
+  variables: TopReposPaginationQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
-var v0 = {
-  "defaultValue": 10,
-  "kind": "LocalArgument",
-  "name": "count"
-},
-v1 = {
-  "defaultValue": null,
-  "kind": "LocalArgument",
-  "name": "cursor"
-},
-v2 = [
+var v0 = [
+  {
+    "defaultValue": 10,
+    "kind": "LocalArgument",
+    "name": "count"
+  },
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "cursor"
+  }
+],
+v1 = [
   {
     "kind": "Variable",
     "name": "after",
@@ -55,14 +57,14 @@ v2 = [
     "value": "REPOSITORY"
   }
 ],
-v3 = {
+v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
 },
-v4 = {
+v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -71,13 +73,10 @@ v4 = {
 };
 return {
   "fragment": {
-    "argumentDefinitions": [
-      (v0/*: any*/),
-      (v1/*: any*/)
-    ],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "TopReposQuery",
+    "name": "TopReposPaginationQuery",
     "selections": [
       {
         "args": [
@@ -101,16 +100,13 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [
-      (v1/*: any*/),
-      (v0/*: any*/)
-    ],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "TopReposQuery",
+    "name": "TopReposPaginationQuery",
     "selections": [
       {
         "alias": null,
-        "args": (v2/*: any*/),
+        "args": (v1/*: any*/),
         "concreteType": "SearchResultItemConnection",
         "kind": "LinkedField",
         "name": "search",
@@ -142,8 +138,8 @@ return {
                   {
                     "kind": "InlineFragment",
                     "selections": [
+                      (v2/*: any*/),
                       (v3/*: any*/),
-                      (v4/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -173,8 +169,8 @@ return {
                         "name": "primaryLanguage",
                         "plural": false,
                         "selections": [
-                          (v4/*: any*/),
-                          (v3/*: any*/)
+                          (v3/*: any*/),
+                          (v2/*: any*/)
                         ],
                         "storageKey": null
                       }
@@ -185,7 +181,7 @@ return {
                   {
                     "kind": "InlineFragment",
                     "selections": [
-                      (v3/*: any*/)
+                      (v2/*: any*/)
                     ],
                     "type": "Node",
                     "abstractKey": "__isNode"
@@ -233,7 +229,7 @@ return {
       },
       {
         "alias": null,
-        "args": (v2/*: any*/),
+        "args": (v1/*: any*/),
         "filters": [
           "query",
           "type"
@@ -246,16 +242,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "e9db23c295bfbb4213ee5da1e2918cae",
+    "cacheID": "bfd505e53ef9da5a038ad37964050684",
     "id": null,
     "metadata": {},
-    "name": "TopReposQuery",
+    "name": "TopReposPaginationQuery",
     "operationKind": "query",
-    "text": "query TopReposQuery(\n  $cursor: String\n  $count: Int = 10\n) {\n  ...TopRepos_search_1G22uz\n}\n\nfragment TopRepos_search_1G22uz on Query {\n  search(query: \"stars:>1000\", type: REPOSITORY, first: $count, after: $cursor) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          id\n          name\n          nameWithOwner\n          description\n          stargazerCount\n          primaryLanguage {\n            name\n            id\n          }\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+    "text": "query TopReposPaginationQuery(\n  $count: Int = 10\n  $cursor: String\n) {\n  ...TopRepos_search_1G22uz\n}\n\nfragment TopRepos_search_1G22uz on Query {\n  search(query: \"stars:>1000\", type: REPOSITORY, first: $count, after: $cursor) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          id\n          name\n          nameWithOwner\n          description\n          stargazerCount\n          primaryLanguage {\n            name\n            id\n          }\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "6e58038ce90961777330d086dfc09f98";
+(node as any).hash = "c2260a39cb67e1dc68572dabd10cdbcd";
 
 export default node;
