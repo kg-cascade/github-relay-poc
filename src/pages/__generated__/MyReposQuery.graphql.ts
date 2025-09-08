@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b969903e2883a804a477fe02a7a19c1d>>
+ * @generated SignedSource<<b9a78ec242fda4322132c41a1f2f41b7>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,8 +10,8 @@
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type aboutQuery$variables = Record<PropertyKey, never>;
-export type aboutQuery$data = {
+export type MyReposQuery$variables = Record<PropertyKey, never>;
+export type MyReposQuery$data = {
   readonly viewer: {
     readonly repositories: {
       readonly nodes: ReadonlyArray<{
@@ -20,9 +20,9 @@ export type aboutQuery$data = {
     };
   };
 };
-export type aboutQuery = {
-  response: aboutQuery$data;
-  variables: aboutQuery$variables;
+export type MyReposQuery = {
+  response: MyReposQuery$data;
+  variables: MyReposQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -60,7 +60,7 @@ return {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "aboutQuery",
+    "name": "MyReposQuery",
     "selections": [
       {
         "alias": null,
@@ -108,7 +108,7 @@ return {
   "operation": {
     "argumentDefinitions": [],
     "kind": "Operation",
-    "name": "aboutQuery",
+    "name": "MyReposQuery",
     "selections": [
       {
         "alias": null,
@@ -183,16 +183,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "f884f51453fbd228fd1209da85ed34d1",
+    "cacheID": "4daba942adcd8850d0dd7db60d509969",
     "id": null,
     "metadata": {},
-    "name": "aboutQuery",
+    "name": "MyReposQuery",
     "operationKind": "query",
-    "text": "query aboutQuery {\n  viewer {\n    repositories(first: 50, orderBy: {field: UPDATED_AT, direction: DESC}) {\n      nodes {\n        ...RepositoryFragment\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment RepositoryFragment on Repository {\n  id\n  name\n  nameWithOwner\n  description\n  stargazerCount\n  primaryLanguage {\n    name\n    id\n  }\n}\n"
+    "text": "query MyReposQuery {\n  viewer {\n    repositories(first: 50, orderBy: {field: UPDATED_AT, direction: DESC}) {\n      nodes {\n        ...RepositoryFragment\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment RepositoryFragment on Repository {\n  id\n  name\n  nameWithOwner\n  description\n  stargazerCount\n  primaryLanguage {\n    name\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "aaae49a5a5545093cad7ea0626883c81";
+(node as any).hash = "c7c90cdd9fcfe26b39a8c195b0e0cfad";
 
 export default node;

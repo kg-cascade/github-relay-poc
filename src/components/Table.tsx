@@ -11,10 +11,7 @@ interface TableProps<TData, TValue> {
   data: TData[];
 }
 
-export function Table<TData, TValue>({
-  columns,
-  data,
-}: TableProps<TData, TValue>) {
+const Table = <TData, TValue>({ columns, data }: TableProps<TData, TValue>) => {
   const table = useReactTable({
     data,
     columns,
@@ -60,4 +57,6 @@ export function Table<TData, TValue>({
       </table>
     </Card>
   );
-}
+};
+
+export default Table;

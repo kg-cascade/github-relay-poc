@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<facb2112c003e5557144d8579e61e64a>>
+ * @generated SignedSource<<01ed10ffe42b3f443ebd1a16a753bc8f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,8 +9,8 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from 'relay-runtime';
-export type routes_indexQuery$variables = Record<PropertyKey, never>;
-export type routes_indexQuery$data = {
+export type TopReposQuery$variables = Record<PropertyKey, never>;
+export type TopReposQuery$data = {
   readonly search: {
     readonly nodes: ReadonlyArray<{
       readonly description?: string | null | undefined;
@@ -24,9 +24,9 @@ export type routes_indexQuery$data = {
     } | null | undefined> | null | undefined;
   };
 };
-export type routes_indexQuery = {
-  response: routes_indexQuery$data;
-  variables: routes_indexQuery$variables;
+export type TopReposQuery = {
+  response: TopReposQuery$data;
+  variables: TopReposQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -87,7 +87,7 @@ return {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "routes_indexQuery",
+    "name": "TopReposQuery",
     "selections": [
       {
         "alias": null,
@@ -143,7 +143,7 @@ return {
   "operation": {
     "argumentDefinitions": [],
     "kind": "Operation",
-    "name": "routes_indexQuery",
+    "name": "TopReposQuery",
     "selections": [
       {
         "alias": null,
@@ -210,16 +210,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "b29bed04fdac5381cd7236e7e3f6c90a",
+    "cacheID": "b9897c64954ccdba4f016c29d2a39700",
     "id": null,
     "metadata": {},
-    "name": "routes_indexQuery",
+    "name": "TopReposQuery",
     "operationKind": "query",
-    "text": "query routes_indexQuery {\n  search(query: \"stars:>1000\", type: REPOSITORY, first: 100) {\n    nodes {\n      __typename\n      ... on Repository {\n        id\n        name\n        nameWithOwner\n        description\n        stargazerCount\n        primaryLanguage {\n          name\n          id\n        }\n      }\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n    }\n  }\n}\n"
+    "text": "query TopReposQuery {\n  search(query: \"stars:>1000\", type: REPOSITORY, first: 100) {\n    nodes {\n      __typename\n      ... on Repository {\n        id\n        name\n        nameWithOwner\n        description\n        stargazerCount\n        primaryLanguage {\n          name\n          id\n        }\n      }\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "65868c6a19b6e636499b7583e60644d0";
+(node as any).hash = "b2acfeb7dab033b1291c16a54533e95a";
 
 export default node;

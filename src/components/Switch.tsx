@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import { Switch as ArkSwitch } from '@ark-ui/react/switch';
+import React, { useState } from 'react';
 
 interface SwitchProps
   extends Omit<React.ComponentProps<typeof ArkSwitch.Root>, 'label'> {
@@ -60,7 +60,7 @@ const getColorClasses = (color: string, variant: string) => {
   }
 };
 
-export const Switch: React.FC<SwitchProps> = ({
+const Switch: React.FC<SwitchProps> = ({
   label,
   size = 'md',
   colorScheme = 'primary',
@@ -99,3 +99,5 @@ export const Switch: React.FC<SwitchProps> = ({
     </ArkSwitch.Root>
   );
 };
+
+export default Switch;
