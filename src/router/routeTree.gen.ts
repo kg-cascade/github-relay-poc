@@ -9,9 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './../routes/__root'
+import { Route as PublicApisRouteImport } from './../routes/PublicApis'
 import { Route as MyReposRouteImport } from './../routes/MyRepos'
 import { Route as IndexRouteImport } from './../routes/index'
+import { Route as RepoRepoIdRouteImport } from './../routes/repo/$repoId'
 
+const PublicApisRoute = PublicApisRouteImport.update({
+  id: '/PublicApis',
+  path: '/PublicApis',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MyReposRoute = MyReposRouteImport.update({
   id: '/MyRepos',
   path: '/MyRepos',
@@ -22,35 +29,55 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RepoRepoIdRoute = RepoRepoIdRouteImport.update({
+  id: '/repo/$repoId',
+  path: '/repo/$repoId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/MyRepos': typeof MyReposRoute
+  '/PublicApis': typeof PublicApisRoute
+  '/repo/$repoId': typeof RepoRepoIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/MyRepos': typeof MyReposRoute
+  '/PublicApis': typeof PublicApisRoute
+  '/repo/$repoId': typeof RepoRepoIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/MyRepos': typeof MyReposRoute
+  '/PublicApis': typeof PublicApisRoute
+  '/repo/$repoId': typeof RepoRepoIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/MyRepos'
+  fullPaths: '/' | '/MyRepos' | '/PublicApis' | '/repo/$repoId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/MyRepos'
-  id: '__root__' | '/' | '/MyRepos'
+  to: '/' | '/MyRepos' | '/PublicApis' | '/repo/$repoId'
+  id: '__root__' | '/' | '/MyRepos' | '/PublicApis' | '/repo/$repoId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   MyReposRoute: typeof MyReposRoute
+  PublicApisRoute: typeof PublicApisRoute
+  RepoRepoIdRoute: typeof RepoRepoIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/PublicApis': {
+      id: '/PublicApis'
+      path: '/PublicApis'
+      fullPath: '/PublicApis'
+      preLoaderRoute: typeof PublicApisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/MyRepos': {
       id: '/MyRepos'
       path: '/MyRepos'
@@ -65,12 +92,21 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/repo/$repoId': {
+      id: '/repo/$repoId'
+      path: '/repo/$repoId'
+      fullPath: '/repo/$repoId'
+      preLoaderRoute: typeof RepoRepoIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   MyReposRoute: MyReposRoute,
+  PublicApisRoute: PublicApisRoute,
+  RepoRepoIdRoute: RepoRepoIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

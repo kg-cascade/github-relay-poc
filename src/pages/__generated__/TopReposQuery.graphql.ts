@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<6b61c0a767bfa7897daed384f05f3fc6>>
+ * @generated SignedSource<<4472ab564649aec25e08380f5ed526ff>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -168,6 +168,13 @@ return {
                       {
                         "alias": null,
                         "args": null,
+                        "kind": "ScalarField",
+                        "name": "visibility",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
                         "concreteType": "Language",
                         "kind": "LinkedField",
                         "name": "primaryLanguage",
@@ -246,12 +253,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "e9db23c295bfbb4213ee5da1e2918cae",
+    "cacheID": "ae6f3307cc1760f78b0297d14ad956c9",
     "id": null,
     "metadata": {},
     "name": "TopReposQuery",
     "operationKind": "query",
-    "text": "query TopReposQuery(\n  $cursor: String\n  $count: Int = 10\n) {\n  ...TopRepos_search_1G22uz\n}\n\nfragment TopRepos_search_1G22uz on Query {\n  search(query: \"stars:>1000\", type: REPOSITORY, first: $count, after: $cursor) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          id\n          name\n          nameWithOwner\n          description\n          stargazerCount\n          primaryLanguage {\n            name\n            id\n          }\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+    "text": "query TopReposQuery(\n  $cursor: String\n  $count: Int = 10\n) {\n  ...TopRepos_search_1G22uz\n}\n\nfragment TopRepos_search_1G22uz on Query {\n  search(query: \"stars:>1000\", type: REPOSITORY, first: $count, after: $cursor) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          id\n          name\n          nameWithOwner\n          description\n          stargazerCount\n          visibility\n          primaryLanguage {\n            name\n            id\n          }\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 })();

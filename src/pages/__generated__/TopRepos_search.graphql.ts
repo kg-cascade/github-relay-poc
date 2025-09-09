@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b5408e55980fd9cf8f4ed6785f039376>>
+ * @generated SignedSource<<826e638789a83a23867d66e2b80b5637>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,6 +9,7 @@
 // @ts-nocheck
 
 import { ReaderFragment } from 'relay-runtime';
+export type RepositoryVisibility = "INTERNAL" | "PRIVATE" | "PUBLIC" | "%future added value";
 import { FragmentRefs } from "relay-runtime";
 export type TopRepos_search$data = {
   readonly search: {
@@ -22,6 +23,7 @@ export type TopRepos_search$data = {
           readonly name: string;
         } | null | undefined;
         readonly stargazerCount?: number;
+        readonly visibility?: RepositoryVisibility;
       } | null | undefined;
     } | null | undefined> | null | undefined;
   };
@@ -153,6 +155,13 @@ return {
                     {
                       "alias": null,
                       "args": null,
+                      "kind": "ScalarField",
+                      "name": "visibility",
+                      "storageKey": null
+                    },
+                    {
+                      "alias": null,
+                      "args": null,
                       "concreteType": "Language",
                       "kind": "LinkedField",
                       "name": "primaryLanguage",
@@ -220,6 +229,6 @@ return {
 };
 })();
 
-(node as any).hash = "c2260a39cb67e1dc68572dabd10cdbcd";
+(node as any).hash = "01a77f2b16cf47f6698d9ea02f6745a1";
 
 export default node;

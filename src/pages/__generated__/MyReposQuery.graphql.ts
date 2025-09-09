@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b9a78ec242fda4322132c41a1f2f41b7>>
+ * @generated SignedSource<<9b2721ede732ca7639d1e8038a19f5b1>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -160,6 +160,13 @@ return {
                   {
                     "alias": null,
                     "args": null,
+                    "kind": "ScalarField",
+                    "name": "visibility",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
                     "concreteType": "Language",
                     "kind": "LinkedField",
                     "name": "primaryLanguage",
@@ -183,12 +190,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "4daba942adcd8850d0dd7db60d509969",
+    "cacheID": "383eaf6e828663a79a26b64821b16e45",
     "id": null,
     "metadata": {},
     "name": "MyReposQuery",
     "operationKind": "query",
-    "text": "query MyReposQuery {\n  viewer {\n    repositories(first: 50, orderBy: {field: UPDATED_AT, direction: DESC}) {\n      nodes {\n        ...RepositoryFragment\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment RepositoryFragment on Repository {\n  id\n  name\n  nameWithOwner\n  description\n  stargazerCount\n  primaryLanguage {\n    name\n    id\n  }\n}\n"
+    "text": "query MyReposQuery {\n  viewer {\n    repositories(first: 50, orderBy: {field: UPDATED_AT, direction: DESC}) {\n      nodes {\n        ...RepositoryFragment\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment RepositoryFragment on Repository {\n  id\n  name\n  nameWithOwner\n  description\n  stargazerCount\n  visibility\n  primaryLanguage {\n    name\n    id\n  }\n}\n"
   }
 };
 })();

@@ -2,6 +2,7 @@ import Button from '@/components/Button';
 import Input from '@/components/Input';
 import Spinner from '@/components/Spinner';
 import Table from '@/components/Table';
+import { Link } from '@tanstack/react-router';
 import { type ColumnDef } from '@tanstack/react-table';
 import { Suspense, useMemo, useState } from 'react';
 import { graphql, useLazyLoadQuery, usePaginationFragment } from 'react-relay';
@@ -31,6 +32,7 @@ function TopRepositories(props: { query: TopRepos_search$key }) {
                 nameWithOwner
                 description
                 stargazerCount
+                visibility
                 primaryLanguage {
                   name
                 }
@@ -51,6 +53,7 @@ function TopRepositories(props: { query: TopRepos_search$key }) {
     nameWithOwner: string | null | undefined;
     description: string | null | undefined;
     stargazerCount: number;
+    visibility: string;
     primaryLanguage:
       | {
           name: string;
@@ -78,11 +81,24 @@ function TopRepositories(props: { query: TopRepos_search$key }) {
     });
   }, [tableData, searchQuery]);
 
-  // Define columns for TanStack Table
   const columns: ColumnDef<Repository>[] = [
+    {
+      id: '#',
+      header: '#',
+      cell: ({ row }) => row.index + 1,
+    },
     {
       accessorKey: 'nameWithOwner',
       header: 'Name',
+      cell: ({ row }) => (
+        <Link
+          to="/repo/$repoId"
+          params={{ repoId: row.original.id }}
+          className="text-blue-500 hover:underline"
+        >
+          {row.original.nameWithOwner}
+        </Link>
+      ),
     },
     {
       accessorKey: 'description',
@@ -97,6 +113,10 @@ function TopRepositories(props: { query: TopRepos_search$key }) {
       accessorKey: 'primaryLanguage.name',
       header: 'Language',
       cell: ({ row }) => row.original?.primaryLanguage?.name || 'N/A',
+    },
+    {
+      accessorKey: 'visibility',
+      header: 'Visibility',
     },
   ];
 

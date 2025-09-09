@@ -7,6 +7,7 @@ export const RepositoryFragment = graphql`
     nameWithOwner
     description
     stargazerCount
+    visibility
     primaryLanguage {
       name
     }
