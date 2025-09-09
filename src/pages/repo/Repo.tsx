@@ -1,13 +1,11 @@
-import { createFileRoute } from '@tanstack/react-router';
+import type { RepoIdQuery } from '@/pages/repo/__generated__/RepoIdQuery.graphql';
 import { graphql, useLazyLoadQuery } from 'react-relay';
-import type { RepoIdQuery } from './__generated__/RepoIdQuery.graphql';
 
-export const Route = createFileRoute('/repo/$repoId')({
-  component: RepoComponent,
-});
+interface RepoPageProps {
+  repoId: string;
+}
 
-function RepoComponent() {
-  const { repoId } = Route.useParams();
+export default function RepoPage({ repoId }: RepoPageProps) {
   const data = useLazyLoadQuery<RepoIdQuery>(
     graphql`
       query RepoIdQuery($repoId: ID!) {
@@ -44,8 +42,8 @@ function RepoComponent() {
     <div className="p-4">
       <div className="flex items-center mb-4">
         <img
-          src={repo.owner.avatarUrl}
-          alt={repo.owner.login}
+          src={repo.owner?.avatarUrl}
+          alt={repo.owner?.login}
           className="w-16 h-16 rounded-full mr-4"
         />
         <div>
