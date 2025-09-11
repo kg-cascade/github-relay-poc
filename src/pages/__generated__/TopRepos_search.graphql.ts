@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<826e638789a83a23867d66e2b80b5637>>
+ * @generated SignedSource<<2cd1bc6853636e45962f976e3b81838d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -19,6 +19,9 @@ export type TopRepos_search$data = {
         readonly id?: string;
         readonly name?: string;
         readonly nameWithOwner?: string;
+        readonly owner?: {
+          readonly login: string;
+        };
         readonly primaryLanguage?: {
           readonly name: string;
         } | null | undefined;
@@ -170,6 +173,24 @@ return {
                         (v1/*: any*/)
                       ],
                       "storageKey": null
+                    },
+                    {
+                      "alias": null,
+                      "args": null,
+                      "concreteType": null,
+                      "kind": "LinkedField",
+                      "name": "owner",
+                      "plural": false,
+                      "selections": [
+                        {
+                          "alias": null,
+                          "args": null,
+                          "kind": "ScalarField",
+                          "name": "login",
+                          "storageKey": null
+                        }
+                      ],
+                      "storageKey": null
                     }
                   ],
                   "type": "Repository",
@@ -229,6 +250,6 @@ return {
 };
 })();
 
-(node as any).hash = "01a77f2b16cf47f6698d9ea02f6745a1";
+(node as any).hash = "dc9de31ab7f50945462cf42a1478a7c8";
 
 export default node;

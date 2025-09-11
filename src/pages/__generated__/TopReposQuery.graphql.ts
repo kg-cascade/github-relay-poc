@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4472ab564649aec25e08380f5ed526ff>>
+ * @generated SignedSource<<6ac490858e06ce61ca1e8f865fd15c73>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -59,10 +59,17 @@ v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "id",
+  "name": "__typename",
   "storageKey": null
 },
 v4 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v5 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -132,18 +139,12 @@ return {
                 "name": "node",
                 "plural": false,
                 "selections": [
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "__typename",
-                    "storageKey": null
-                  },
+                  (v3/*: any*/),
                   {
                     "kind": "InlineFragment",
                     "selections": [
-                      (v3/*: any*/),
                       (v4/*: any*/),
+                      (v5/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -180,8 +181,28 @@ return {
                         "name": "primaryLanguage",
                         "plural": false,
                         "selections": [
-                          (v4/*: any*/),
-                          (v3/*: any*/)
+                          (v5/*: any*/),
+                          (v4/*: any*/)
+                        ],
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": null,
+                        "kind": "LinkedField",
+                        "name": "owner",
+                        "plural": false,
+                        "selections": [
+                          (v3/*: any*/),
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "login",
+                            "storageKey": null
+                          },
+                          (v4/*: any*/)
                         ],
                         "storageKey": null
                       }
@@ -192,7 +213,7 @@ return {
                   {
                     "kind": "InlineFragment",
                     "selections": [
-                      (v3/*: any*/)
+                      (v4/*: any*/)
                     ],
                     "type": "Node",
                     "abstractKey": "__isNode"
@@ -253,12 +274,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "ae6f3307cc1760f78b0297d14ad956c9",
+    "cacheID": "52b43a45b40a74a37356622ab9341c47",
     "id": null,
     "metadata": {},
     "name": "TopReposQuery",
     "operationKind": "query",
-    "text": "query TopReposQuery(\n  $cursor: String\n  $count: Int = 10\n) {\n  ...TopRepos_search_1G22uz\n}\n\nfragment TopRepos_search_1G22uz on Query {\n  search(query: \"stars:>1000\", type: REPOSITORY, first: $count, after: $cursor) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          id\n          name\n          nameWithOwner\n          description\n          stargazerCount\n          visibility\n          primaryLanguage {\n            name\n            id\n          }\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+    "text": "query TopReposQuery(\n  $cursor: String\n  $count: Int = 10\n) {\n  ...TopRepos_search_1G22uz\n}\n\nfragment TopRepos_search_1G22uz on Query {\n  search(query: \"stars:>1000\", type: REPOSITORY, first: $count, after: $cursor) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          id\n          name\n          nameWithOwner\n          description\n          stargazerCount\n          visibility\n          primaryLanguage {\n            name\n            id\n          }\n          owner {\n            __typename\n            login\n            id\n          }\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 })();

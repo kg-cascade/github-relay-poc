@@ -1,13 +1,78 @@
+import AuthorHoverCardContent from '@/components/AuthorHoverCardContent';
 import Button from '@/components/Button';
+import HoverCard from '@/components/HoverCard';
 import Input from '@/components/Input';
 import Spinner from '@/components/Spinner';
 import Table from '@/components/Table';
 import { Link } from '@tanstack/react-router';
-import { type ColumnDef } from '@tanstack/react-table';
+import { type ColumnDef, type Row } from '@tanstack/react-table';
 import { Suspense, useMemo, useState } from 'react';
-import { graphql, useLazyLoadQuery, usePaginationFragment } from 'react-relay';
+import {
+  graphql,
+  useLazyLoadQuery,
+  usePaginationFragment,
+  useQueryLoader,
+} from 'react-relay';
+import type { TopReposAuthorHoverCardQuery } from './__generated__/TopReposAuthorHoverCardQuery.graphql';
 import type { TopReposQuery } from './__generated__/TopReposQuery.graphql';
 import type { TopRepos_search$key } from './__generated__/TopRepos_search.graphql';
+
+const AuthorHoverCardQuery = graphql`
+  query TopReposAuthorHoverCardQuery($login: String!) {
+    user(login: $login) {
+      ...AuthorDetailsFragment
+    }
+  }
+`;
+
+type Repository = {
+  id: string;
+  name: string;
+  nameWithOwner: string | null | undefined;
+  description: string | null | undefined;
+  stargazerCount: number;
+  visibility: string;
+  primaryLanguage:
+    | {
+        name: string;
+      }
+    | null
+    | undefined;
+  owner: {
+    login: string;
+  };
+};
+
+const NameCell = ({ row }: { row: Row<Repository> }) => {
+  const [queryRef, loadQuery] =
+    useQueryLoader<TopReposAuthorHoverCardQuery>(AuthorHoverCardQuery);
+
+  const handleMouseEnter = () => {
+    if (!queryRef) {
+      loadQuery({ login: row.original.owner.login });
+    }
+  };
+
+  return (
+    <div onMouseEnter={handleMouseEnter}>
+      <HoverCard
+        content={
+          <Suspense fallback={<Spinner />}>
+            {queryRef && <AuthorHoverCardContent queryRef={queryRef} />}
+          </Suspense>
+        }
+      >
+        <Link
+          to="/repo/$repoId"
+          params={{ repoId: row.original.id }}
+          className="text-blue-500 hover:underline"
+        >
+          {row.original.nameWithOwner}
+        </Link>
+      </HoverCard>
+    </div>
+  );
+};
 
 function TopRepositories(props: { query: TopRepos_search$key }) {
   const { data, loadNext, hasNext, isLoadingNext } = usePaginationFragment(
@@ -36,6 +101,9 @@ function TopRepositories(props: { query: TopRepos_search$key }) {
                 primaryLanguage {
                   name
                 }
+                owner {
+                  login
+                }
               }
             }
           }
@@ -46,21 +114,6 @@ function TopRepositories(props: { query: TopRepos_search$key }) {
   );
 
   const [searchQuery, setSearchQuery] = useState('');
-
-  type Repository = {
-    id: string;
-    name: string;
-    nameWithOwner: string | null | undefined;
-    description: string | null | undefined;
-    stargazerCount: number;
-    visibility: string;
-    primaryLanguage:
-      | {
-          name: string;
-        }
-      | null
-      | undefined;
-  };
 
   const tableData: Repository[] =
     (data.search.edges
@@ -90,15 +143,7 @@ function TopRepositories(props: { query: TopRepos_search$key }) {
     {
       accessorKey: 'nameWithOwner',
       header: 'Name',
-      cell: ({ row }) => (
-        <Link
-          to="/repo/$repoId"
-          params={{ repoId: row.original.id }}
-          className="text-blue-500 hover:underline"
-        >
-          {row.original.nameWithOwner}
-        </Link>
-      ),
+      cell: ({ row }) => <NameCell row={row} />,
     },
     {
       accessorKey: 'description',
@@ -141,6 +186,7 @@ function TopRepositories(props: { query: TopRepos_search$key }) {
           />
           <Button onClick={() => setSearchQuery('')}>Clear</Button>
         </div>
+
         {filteredData.length > 0 ? (
           <Table columns={columns} data={filteredData} />
         ) : (

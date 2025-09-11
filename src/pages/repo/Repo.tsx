@@ -1,5 +1,5 @@
 import noAvatarSvg from '@/assets/no-avatar.svg';
-import { Card } from '@/components';
+import Card from '@/components/Card';
 import type { RepoIdQuery } from '@/pages/repo/__generated__/RepoIdQuery.graphql';
 import { Avatar } from '@ark-ui/react/avatar';
 import { graphql, useLazyLoadQuery } from 'react-relay';

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9f8ea0d4ea6c45050703fe4497ce8334>>
+ * @generated SignedSource<<c5e3be35daf0a836eaee17c4e065967c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -61,10 +61,17 @@ v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "id",
+  "name": "__typename",
   "storageKey": null
 },
 v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -128,18 +135,12 @@ return {
                 "name": "node",
                 "plural": false,
                 "selections": [
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "__typename",
-                    "storageKey": null
-                  },
+                  (v2/*: any*/),
                   {
                     "kind": "InlineFragment",
                     "selections": [
-                      (v2/*: any*/),
                       (v3/*: any*/),
+                      (v4/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -176,8 +177,28 @@ return {
                         "name": "primaryLanguage",
                         "plural": false,
                         "selections": [
-                          (v3/*: any*/),
-                          (v2/*: any*/)
+                          (v4/*: any*/),
+                          (v3/*: any*/)
+                        ],
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": null,
+                        "kind": "LinkedField",
+                        "name": "owner",
+                        "plural": false,
+                        "selections": [
+                          (v2/*: any*/),
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "login",
+                            "storageKey": null
+                          },
+                          (v3/*: any*/)
                         ],
                         "storageKey": null
                       }
@@ -188,7 +209,7 @@ return {
                   {
                     "kind": "InlineFragment",
                     "selections": [
-                      (v2/*: any*/)
+                      (v3/*: any*/)
                     ],
                     "type": "Node",
                     "abstractKey": "__isNode"
@@ -249,16 +270,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "b99078f47de12eb385c3107b377b6cd8",
+    "cacheID": "4da4f4af3e34a793d9f904e480e14407",
     "id": null,
     "metadata": {},
     "name": "TopReposPaginationQuery",
     "operationKind": "query",
-    "text": "query TopReposPaginationQuery(\n  $count: Int = 10\n  $cursor: String\n) {\n  ...TopRepos_search_1G22uz\n}\n\nfragment TopRepos_search_1G22uz on Query {\n  search(query: \"stars:>1000\", type: REPOSITORY, first: $count, after: $cursor) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          id\n          name\n          nameWithOwner\n          description\n          stargazerCount\n          visibility\n          primaryLanguage {\n            name\n            id\n          }\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+    "text": "query TopReposPaginationQuery(\n  $count: Int = 10\n  $cursor: String\n) {\n  ...TopRepos_search_1G22uz\n}\n\nfragment TopRepos_search_1G22uz on Query {\n  search(query: \"stars:>1000\", type: REPOSITORY, first: $count, after: $cursor) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          id\n          name\n          nameWithOwner\n          description\n          stargazerCount\n          visibility\n          primaryLanguage {\n            name\n            id\n          }\n          owner {\n            __typename\n            login\n            id\n          }\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "01a77f2b16cf47f6698d9ea02f6745a1";
+(node as any).hash = "dc9de31ab7f50945462cf42a1478a7c8";
 
 export default node;
