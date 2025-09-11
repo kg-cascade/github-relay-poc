@@ -1,14 +1,16 @@
-import noAvatarSvg from '@/assets/no-avatar.svg';
+import type { RepoIdQuery } from '@/api/relay/generated/RepoIdQuery.graphql';
 import Card from '@/components/Card';
-import type { RepoIdQuery } from '@/pages/repo/__generated__/RepoIdQuery.graphql';
+import noAvatarSvg from '@/shared/assets/no-avatar.svg';
 import { Avatar } from '@ark-ui/react/avatar';
+import { createFileRoute } from '@tanstack/react-router';
 import { graphql, useLazyLoadQuery } from 'react-relay';
 
-interface RepoPageProps {
-  repoId: string;
-}
+export const Route = createFileRoute('/repo/$repoId')({
+  component: RepoPage,
+});
 
-export default function RepoPage({ repoId }: RepoPageProps) {
+function RepoPage() {
+  const { repoId } = Route.useParams();
   const data = useLazyLoadQuery<RepoIdQuery>(
     graphql`
       query RepoIdQuery($repoId: ID!) {

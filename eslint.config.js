@@ -1,5 +1,5 @@
 import js from '@eslint/js';
-import pluginTanstackQuery from '@tanstack/eslint-plugin-query';
+
 import pluginReact from 'eslint-plugin-react';
 import { defineConfig } from 'eslint/config';
 import globals from 'globals';
@@ -30,12 +30,5 @@ export default defineConfig([
       'react/prop-types': 'off',
     },
   },
-  {
-    plugins: {
-      '@tanstack/query': pluginTanstackQuery,
-    },
-    rules: {
-      ...pluginTanstackQuery.configs.recommended.rules,
-    },
-  },
+  
 ]);

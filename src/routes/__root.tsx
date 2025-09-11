@@ -1,7 +1,7 @@
+import type { RootQuery } from '@/api/relay/generated/RootQuery.graphql';
 import { createRootRoute } from '@tanstack/react-router';
-import Layout from '../components/layout/Layout';
 import { graphql, useLazyLoadQuery } from 'react-relay';
-import type { RootQuery } from './__generated__/RootQuery.graphql';
+import Layout from '../components/layout/Layout';
 
 export const Route = createRootRoute({
   component: () => {

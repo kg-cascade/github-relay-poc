@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3091d521af3f2ab9c19818102103f5a5>>
+ * @generated SignedSource<<230f100d208ed7a17d11876fd357228a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,7 +15,7 @@ export type TopReposAuthorHoverCardQuery$variables = {
 };
 export type TopReposAuthorHoverCardQuery$data = {
   readonly user: {
-    readonly " $fragmentSpreads": FragmentRefs<"AuthorDetailsFragment">;
+    readonly " $fragmentSpreads": FragmentRefs<"AuthorHoverCardContent_AuthorDetailsFragment">;
   } | null | undefined;
 };
 export type TopReposAuthorHoverCardQuery = {
@@ -56,7 +56,7 @@ return {
           {
             "args": null,
             "kind": "FragmentSpread",
-            "name": "AuthorDetailsFragment"
+            "name": "AuthorHoverCardContent_AuthorDetailsFragment"
           }
         ],
         "storageKey": null
@@ -197,16 +197,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "b1b797f3b581f12ce32eaabd2c45c83e",
+    "cacheID": "d4ddccb765b7ffba0bd242388ab25cda",
     "id": null,
     "metadata": {},
     "name": "TopReposAuthorHoverCardQuery",
     "operationKind": "query",
-    "text": "query TopReposAuthorHoverCardQuery(\n  $login: String!\n) {\n  user(login: $login) {\n    ...AuthorDetailsFragment\n    id\n  }\n}\n\nfragment AuthorDetailsFragment on User {\n  id\n  login\n  name\n  avatarUrl\n  bio\n  company\n  location\n  email\n  createdAt\n  updatedAt\n  isHireable\n  isEmployee\n  isGitHubStar\n  twitterUsername\n  websiteUrl\n  pronouns\n}\n"
+    "text": "query TopReposAuthorHoverCardQuery(\n  $login: String!\n) {\n  user(login: $login) {\n    ...AuthorHoverCardContent_AuthorDetailsFragment\n    id\n  }\n}\n\nfragment AuthorHoverCardContent_AuthorDetailsFragment on User {\n  id\n  login\n  name\n  avatarUrl\n  bio\n  company\n  location\n  email\n  createdAt\n  updatedAt\n  isHireable\n  isEmployee\n  isGitHubStar\n  twitterUsername\n  websiteUrl\n  pronouns\n}\n"
   }
 };
 })();
 
-(node as any).hash = "1480eb98a13e88b8992e6ca0eb730b5c";
+(node as any).hash = "809875ebeeaf3977a2da9ee98211748e";
 
 export default node;

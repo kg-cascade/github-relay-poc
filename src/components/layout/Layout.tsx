@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { graphql, useFragment } from 'react-relay';
 import Button from '../Button';
 import MainMenu from './MainMenu';
-import type { Layout_viewer$key } from './__generated__/Layout_viewer.graphql';
+import type { Layout_viewer$key } from '@/api/relay/generated/Layout_viewer.graphql';
 
 interface LayoutProps {
   viewer: Layout_viewer$key;

@@ -1,13 +1,29 @@
-import { graphql, useLazyLoadQuery, useFragment } from 'react-relay';
-import type { MyReposQuery } from './__generated__/MyReposQuery.graphql';
-import { RepositoryFragment } from '../fragments/RepositoryFragment';
-import type { RepositoryFragment$key } from '../fragments/__generated__/RepositoryFragment.graphql';
-import type { RepositoryFragment$data } from '../fragments/__generated__/RepositoryFragment.graphql';
+import type { MyReposQuery } from '@/api/relay/generated/MyReposQuery.graphql';
+import type {
+  MyRepos_RepositoryFragment$data,
+  MyRepos_RepositoryFragment$key,
+} from '@/api/relay/generated/MyRepos_RepositoryFragment.graphql';
 import Table from '@/components/Table';
+import { Link, Route as TanStackRoute } from '@tanstack/react-router';
 import { type ColumnDef } from '@tanstack/react-table';
-import { Link } from '@tanstack/react-router';
+import { graphql, useFragment, useLazyLoadQuery } from 'react-relay';
+import { Route as rootRoute } from './__root';
 
-function MyRepos() {
+const MyRepos_RepositoryFragment = graphql`
+  fragment MyRepos_RepositoryFragment on Repository {
+    id
+    name
+    nameWithOwner
+    description
+    stargazerCount
+    visibility
+    primaryLanguage {
+      name
+    }
+  }
+`;
+
+function MyReposComponent() {
   const data = useLazyLoadQuery<MyReposQuery>(
     graphql`
       query MyReposQuery {
@@ -17,18 +33,27 @@ function MyRepos() {
             orderBy: { field: UPDATED_AT, direction: DESC }
           ) {
             nodes {
-              ...RepositoryFragment
+              ...MyRepos_RepositoryFragment
             }
           }
         }
       }
     `,
-    {}
+    {},
+    { fetchPolicy: 'store-and-network' }
   );
 
-  const repositories = data.viewer.repositories.nodes?.filter(Boolean).map(repoRef => useFragment(RepositoryFragment, repoRef as RepositoryFragment$key)) || [];
+  const repositories =
+    data.viewer.repositories.nodes
+      ?.filter(Boolean)
+      .map((repoRef) =>
+        useFragment(
+          MyRepos_RepositoryFragment,
+          repoRef as MyRepos_RepositoryFragment$key
+        )
+      ) || [];
 
-  const columns: ColumnDef<RepositoryFragment$data>[] = [
+  const columns: ColumnDef<MyRepos_RepositoryFragment$data>[] = [
     {
       id: '#',
       header: '#',
@@ -79,4 +104,8 @@ function MyRepos() {
   );
 }
 
-export default MyRepos;
+export const Route = new TanStackRoute({
+  getParentRoute: () => rootRoute,
+  path: '/my-repos',
+  component: MyReposComponent,
+});

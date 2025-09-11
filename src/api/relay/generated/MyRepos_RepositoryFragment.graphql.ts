@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4c8b542aa2e63f9d7ef9560d91e74b9d>>
+ * @generated SignedSource<<79437a3801b19b33ee213e532433159e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 import { ReaderFragment } from 'relay-runtime';
 export type RepositoryVisibility = "INTERNAL" | "PRIVATE" | "PUBLIC" | "%future added value";
 import { FragmentRefs } from "relay-runtime";
-export type RepositoryFragment$data = {
+export type MyRepos_RepositoryFragment$data = {
   readonly description: string | null | undefined;
   readonly id: string;
   readonly name: string;
@@ -21,11 +21,11 @@ export type RepositoryFragment$data = {
   } | null | undefined;
   readonly stargazerCount: number;
   readonly visibility: RepositoryVisibility;
-  readonly " $fragmentType": "RepositoryFragment";
+  readonly " $fragmentType": "MyRepos_RepositoryFragment";
 };
-export type RepositoryFragment$key = {
-  readonly " $data"?: RepositoryFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"RepositoryFragment">;
+export type MyRepos_RepositoryFragment$key = {
+  readonly " $data"?: MyRepos_RepositoryFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"MyRepos_RepositoryFragment">;
 };
 
 const node: ReaderFragment = (function(){
@@ -40,7 +40,7 @@ return {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "RepositoryFragment",
+  "name": "MyRepos_RepositoryFragment",
   "selections": [
     {
       "alias": null,
@@ -96,6 +96,6 @@ return {
 };
 })();
 
-(node as any).hash = "12319934e6125a22f3f307e5f9d90110";
+(node as any).hash = "199fd0619bf1a67c56ca13913853dbfa";
 
 export default node;

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9b2721ede732ca7639d1e8038a19f5b1>>
+ * @generated SignedSource<<250d2d95a7d3730dedb7e4f0575cf9a3>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,7 +15,7 @@ export type MyReposQuery$data = {
   readonly viewer: {
     readonly repositories: {
       readonly nodes: ReadonlyArray<{
-        readonly " $fragmentSpreads": FragmentRefs<"RepositoryFragment">;
+        readonly " $fragmentSpreads": FragmentRefs<"MyRepos_RepositoryFragment">;
       } | null | undefined> | null | undefined;
     };
   };
@@ -89,7 +89,7 @@ return {
                   {
                     "args": null,
                     "kind": "FragmentSpread",
-                    "name": "RepositoryFragment"
+                    "name": "MyRepos_RepositoryFragment"
                   }
                 ],
                 "storageKey": null
@@ -190,16 +190,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "383eaf6e828663a79a26b64821b16e45",
+    "cacheID": "7c48061a3230750a912b25dcbf78d954",
     "id": null,
     "metadata": {},
     "name": "MyReposQuery",
     "operationKind": "query",
-    "text": "query MyReposQuery {\n  viewer {\n    repositories(first: 50, orderBy: {field: UPDATED_AT, direction: DESC}) {\n      nodes {\n        ...RepositoryFragment\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment RepositoryFragment on Repository {\n  id\n  name\n  nameWithOwner\n  description\n  stargazerCount\n  visibility\n  primaryLanguage {\n    name\n    id\n  }\n}\n"
+    "text": "query MyReposQuery {\n  viewer {\n    repositories(first: 50, orderBy: {field: UPDATED_AT, direction: DESC}) {\n      nodes {\n        ...MyRepos_RepositoryFragment\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment MyRepos_RepositoryFragment on Repository {\n  id\n  name\n  nameWithOwner\n  description\n  stargazerCount\n  visibility\n  primaryLanguage {\n    name\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "c7c90cdd9fcfe26b39a8c195b0e0cfad";
+(node as any).hash = "17aeb95b5b8c159fefcb02074d88b7dd";
 
 export default node;

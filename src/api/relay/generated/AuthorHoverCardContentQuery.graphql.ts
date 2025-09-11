@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a8d0fd2612ee8b3d85c0b5ebc7060d61>>
+ * @generated SignedSource<<5525104ccbde20199d17339dc927374f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,7 +15,7 @@ export type AuthorHoverCardContentQuery$variables = {
 };
 export type AuthorHoverCardContentQuery$data = {
   readonly user: {
-    readonly " $fragmentSpreads": FragmentRefs<"AuthorDetailsFragment">;
+    readonly " $fragmentSpreads": FragmentRefs<"AuthorHoverCardContent_AuthorDetailsFragment">;
   } | null | undefined;
 };
 export type AuthorHoverCardContentQuery = {
@@ -56,7 +56,7 @@ return {
           {
             "args": null,
             "kind": "FragmentSpread",
-            "name": "AuthorDetailsFragment"
+            "name": "AuthorHoverCardContent_AuthorDetailsFragment"
           }
         ],
         "storageKey": null
@@ -197,16 +197,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "18c72bcc8f451928c8e75eb97e2ba926",
+    "cacheID": "921ae487e05723c6aafc4b1a4d129e55",
     "id": null,
     "metadata": {},
     "name": "AuthorHoverCardContentQuery",
     "operationKind": "query",
-    "text": "query AuthorHoverCardContentQuery(\n  $login: String!\n) {\n  user(login: $login) {\n    ...AuthorDetailsFragment\n    id\n  }\n}\n\nfragment AuthorDetailsFragment on User {\n  id\n  login\n  name\n  avatarUrl\n  bio\n  company\n  location\n  email\n  createdAt\n  updatedAt\n  isHireable\n  isEmployee\n  isGitHubStar\n  twitterUsername\n  websiteUrl\n  pronouns\n}\n"
+    "text": "query AuthorHoverCardContentQuery(\n  $login: String!\n) {\n  user(login: $login) {\n    ...AuthorHoverCardContent_AuthorDetailsFragment\n    id\n  }\n}\n\nfragment AuthorHoverCardContent_AuthorDetailsFragment on User {\n  id\n  login\n  name\n  avatarUrl\n  bio\n  company\n  location\n  email\n  createdAt\n  updatedAt\n  isHireable\n  isEmployee\n  isGitHubStar\n  twitterUsername\n  websiteUrl\n  pronouns\n}\n"
   }
 };
 })();
 
-(node as any).hash = "b19a48a0922a546adb6dd3bf519d243e";
+(node as any).hash = "3a170756a72902679da7f61e9198095e";
 
 export default node;

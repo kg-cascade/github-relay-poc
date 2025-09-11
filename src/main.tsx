@@ -1,19 +1,21 @@
-import '@/styles/index.css';
+import '@/shared/styles/index.css';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import { RelayEnvironmentProvider } from 'react-relay';
-import { QueryProvider } from './context/QueryContext';
-import { environment } from './relay/environment';
-import { RouterProvider } from './router/RouterProvider';
+
+import { createRouter, RouterProvider } from '@tanstack/react-router';
+import { routeTree } from './routes/routeTree.gen';
+
+import { RelayEnviroment } from './api/relay/RelayEnvironment';
+
+const router = createRouter({ routeTree });
 
 const rootElement = document.getElementById('root')!;
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <StrictMode>
-    <QueryProvider>
-      <RelayEnvironmentProvider environment={environment}>
-        <RouterProvider />
-      </RelayEnvironmentProvider>
-    </QueryProvider>
+    <RelayEnvironmentProvider environment={RelayEnviroment}>
+      <RouterProvider router={router} />
+    </RelayEnvironmentProvider>
   </StrictMode>
 );

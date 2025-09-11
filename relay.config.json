@@ -2,6 +2,7 @@
   "src": "./src",
   "schema": "./src/queries/schema.graphql",
   "language": "typescript",
-  "exclude": ["**/node_modules/**", "**/__mocks__/**", "**/__generated__/**", "**/schema.docs.graphql"],
-  "eagerEsModules": true
+  "exclude": ["**/node_modules/**", "**/__mocks__/**", "**/schema.docs.graphql"],
+  "eagerEsModules": true,
+  "artifactDirectory": "./src/api/relay/generated"
 }

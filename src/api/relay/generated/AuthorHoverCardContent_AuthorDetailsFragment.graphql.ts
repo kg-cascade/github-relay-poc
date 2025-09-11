@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<750bd8a959cddd78d8a22195439fc862>>
+ * @generated SignedSource<<65bdd783e25c35a4bc2b62b5b982070c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,7 +10,7 @@
 
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type AuthorDetailsFragment$data = {
+export type AuthorHoverCardContent_AuthorDetailsFragment$data = {
   readonly avatarUrl: any;
   readonly bio: string | null | undefined;
   readonly company: string | null | undefined;
@@ -27,18 +27,18 @@ export type AuthorDetailsFragment$data = {
   readonly twitterUsername: string | null | undefined;
   readonly updatedAt: any;
   readonly websiteUrl: any | null | undefined;
-  readonly " $fragmentType": "AuthorDetailsFragment";
+  readonly " $fragmentType": "AuthorHoverCardContent_AuthorDetailsFragment";
 };
-export type AuthorDetailsFragment$key = {
-  readonly " $data"?: AuthorDetailsFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"AuthorDetailsFragment">;
+export type AuthorHoverCardContent_AuthorDetailsFragment$key = {
+  readonly " $data"?: AuthorHoverCardContent_AuthorDetailsFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"AuthorHoverCardContent_AuthorDetailsFragment">;
 };
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "AuthorDetailsFragment",
+  "name": "AuthorHoverCardContent_AuthorDetailsFragment",
   "selections": [
     {
       "alias": null,
@@ -157,6 +157,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "c6e295e98afbe618b837a3c6731f1ee9";
+(node as any).hash = "2ab3aac12296a6862ef7ba5837b232aa";
 
 export default node;

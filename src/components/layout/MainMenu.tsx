@@ -45,8 +45,6 @@ const MainMenu = () => {
         ></div>
       )}
 
-      
-
       <div
         id="main-menu-content"
         className={`
@@ -76,7 +74,7 @@ const MainMenu = () => {
         <NavLink colorScheme="text" to="/">
           Top Repos
         </NavLink>
-        <NavLink colorScheme="text" to="/MyRepos">
+        <NavLink colorScheme="text" to="/my-repos">
           My Repos
         </NavLink>
         <NavLink colorScheme="text" to="/PublicApis">

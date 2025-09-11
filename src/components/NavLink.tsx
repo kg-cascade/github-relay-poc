@@ -1,4 +1,4 @@
-import { cn } from '@/utils/cn'; // Upewnij się, że ścieżka do cn jest poprawna
+import { cn } from '@/shared/utils/cn'; // Upewnij się, że ścieżka do cn jest poprawna
 import { Link } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
 

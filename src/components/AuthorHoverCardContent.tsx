@@ -1,5 +1,3 @@
-import type { AuthorDetailsFragment$key } from '@/fragments/__generated__/AuthorDetailsFragment.graphql';
-import { AuthorDetailsFragment } from '@/fragments/AuthorDetailsFragment';
 import React from 'react';
 import {
   graphql,
@@ -7,7 +5,29 @@ import {
   usePreloadedQuery,
   type PreloadedQuery,
 } from 'react-relay';
-import type { AuthorHoverCardContentQuery } from './__generated__/AuthorHoverCardContentQuery.graphql';
+import type { AuthorHoverCardContentQuery } from '@/api/relay/generated/AuthorHoverCardContentQuery.graphql';
+import type { AuthorHoverCardContent_AuthorDetailsFragment$key } from '@/api/relay/generated/AuthorHoverCardContent_AuthorDetailsFragment.graphql';
+
+const AuthorHoverCardContent_AuthorDetailsFragment = graphql`
+  fragment AuthorHoverCardContent_AuthorDetailsFragment on User {
+    id
+    login
+    name
+    avatarUrl
+    bio
+    company
+    location
+    email
+    createdAt
+    updatedAt
+    isHireable
+    isEmployee
+    isGitHubStar
+    twitterUsername
+    websiteUrl
+    pronouns
+  }
+`;
 
 interface AuthorHoverCardContentProps {
   queryRef: PreloadedQuery<AuthorHoverCardContentQuery>;
@@ -20,15 +40,15 @@ const AuthorHoverCardContent: React.FC<AuthorHoverCardContentProps> = ({
     graphql`
       query AuthorHoverCardContentQuery($login: String!) {
         user(login: $login) {
-          ...AuthorDetailsFragment
+          ...AuthorHoverCardContent_AuthorDetailsFragment
         }
       }
     `,
     queryRef
   );
 
-  const user = useFragment<AuthorDetailsFragment$key>(
-    AuthorDetailsFragment,
+  const user = useFragment<AuthorHoverCardContent_AuthorDetailsFragment$key>(
+    AuthorHoverCardContent_AuthorDetailsFragment,
     data.user
   );
 
