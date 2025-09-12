@@ -11,7 +11,7 @@ export default defineConfig({
     tanstackRouter({
       target: 'react',
       autoCodeSplitting: true,
-      generatedRouteTree: './src/router/routeTree.gen.ts',
+      generatedRouteTree: './src/routes/routeTree.gen.ts',
     }),
     react({ babel: { plugins: ['relay'] } }),
   ],

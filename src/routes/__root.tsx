@@ -1,20 +1,15 @@
-import type { RootQuery } from '@/api/relay/generated/RootQuery.graphql';
-import { createRootRoute } from '@tanstack/react-router';
-import { graphql, useLazyLoadQuery } from 'react-relay';
-import Layout from '../components/layout/Layout';
+import Footer from '@/shared/components/Footer';
+import MainMenu from '@/shared/components/MainMenu';
+import { createRootRoute, Outlet } from '@tanstack/react-router';
+import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 
-export const Route = createRootRoute({
-  component: () => {
-    const data = useLazyLoadQuery<RootQuery>(
-      graphql`
-        query RootQuery {
-          viewer {
-            ...Layout_viewer
-          }
-        }
-      `,
-      {}
-    );
-    return <Layout viewer={data.viewer} />;
-  },
-});
+const RootLayout = () => (
+  <div className="min-h-svh bg-white dark:bg-slate-900">
+    <MainMenu />
+    <Outlet />
+    <Footer />
+    <TanStackRouterDevtools />
+  </div>
+);
+
+export const Route = createRootRoute({ component: RootLayout });

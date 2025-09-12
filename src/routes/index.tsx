@@ -1,10 +1,14 @@
+import type { TopReposAuthorHoverCardQuery } from '@/api/relay/generated/TopReposAuthorHoverCardQuery.graphql';
+import type { TopReposQuery } from '@/api/relay/generated/TopReposQuery.graphql';
+import type { TopRepos_search$key } from '@/api/relay/generated/TopRepos_search.graphql';
 import AuthorHoverCardContent from '@/components/AuthorHoverCardContent';
-import Button from '@/components/Button';
-import HoverCard from '@/components/HoverCard';
 import Input from '@/components/Input';
 import Spinner from '@/components/Spinner';
-import Table from '@/components/Table';
-import { Link, createFileRoute } from '@tanstack/react-router'; // Keep createFileRoute
+import Table from '@/shared/components/Table';
+import { Button } from '@/shared/components/ui/Button';
+import HoverCard from '@/shared/components/ui/HoverCard';
+import { Link } from '@/shared/components/ui/Link';
+import { createFileRoute } from '@tanstack/react-router'; // Keep createFileRoute
 import { type ColumnDef, type Row } from '@tanstack/react-table';
 import { Suspense, useMemo, useState } from 'react';
 import {
@@ -13,9 +17,6 @@ import {
   usePaginationFragment,
   useQueryLoader,
 } from 'react-relay';
-import type { TopReposAuthorHoverCardQuery } from '@/api/relay/generated/TopReposAuthorHoverCardQuery.graphql';
-import type { TopReposQuery } from '@/api/relay/generated/TopReposQuery.graphql';
-import type { TopRepos_search$key } from '@/api/relay/generated/TopRepos_search.graphql';
 
 // All content from TopRepos.tsx below this line
 
@@ -67,7 +68,7 @@ const NameCell = ({ row }: { row: Row<Repository> }) => {
         <Link
           to="/repo/$repoId"
           params={{ repoId: row.original.id }}
-          className="text-blue-500 hover:underline"
+          className="text-gray-300 hover:text-gray-500 underline"
         >
           {row.original.nameWithOwner}
         </Link>
@@ -119,7 +120,10 @@ function TopRepositories(props: { query: TopRepos_search$key }) {
 
   const tableData: Repository[] =
     (data.search.edges
-      ?.map((edge: { node: Repository | null | undefined } | null | undefined) => edge?.node)
+      ?.map(
+        (edge: { node: Repository | null | undefined } | null | undefined) =>
+          edge?.node
+      )
       .filter(Boolean) as Repository[]) || [];
 
   const filteredData = useMemo(() => {
@@ -210,7 +214,8 @@ function TopRepositories(props: { query: TopRepos_search$key }) {
   );
 }
 
-function IndexComponent() { // Renamed from TopReposPage to avoid conflict and better reflect its new home
+function IndexComponent() {
+  // Renamed from TopReposPage to avoid conflict and better reflect its new home
   const data = useLazyLoadQuery<TopReposQuery>(
     graphql`
       query TopReposQuery($cursor: String, $count: Int = 10) {

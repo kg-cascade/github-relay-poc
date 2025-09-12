@@ -3,7 +3,8 @@ import type {
   MyRepos_RepositoryFragment$data,
   MyRepos_RepositoryFragment$key,
 } from '@/api/relay/generated/MyRepos_RepositoryFragment.graphql';
-import Table from '@/components/Table';
+import Table from '@/shared/components/Table';
+import Card from '@/shared/components/ui/Card';
 import { Link, Route as TanStackRoute } from '@tanstack/react-router';
 import { type ColumnDef } from '@tanstack/react-table';
 import { graphql, useFragment, useLazyLoadQuery } from 'react-relay';
@@ -93,7 +94,8 @@ function MyReposComponent() {
   ];
 
   return (
-    <div className="p-2">
+    <div className="h-screen">
+      <Card>to jest text</Card>
       <h3 className="text-test text-2xl font-bold mb-4">My Repositories</h3>
       {repositories.length > 0 ? (
         <Table columns={columns} data={repositories} />

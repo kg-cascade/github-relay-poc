@@ -1,11 +1,10 @@
-
 import {
   flexRender,
   getCoreRowModel,
   useReactTable,
   type ColumnDef,
 } from '@tanstack/react-table';
-import Card from './Card';
+import Card from './ui/Card';
 
 interface TableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
