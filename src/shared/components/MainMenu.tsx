@@ -1,15 +1,13 @@
-'use client';
-
 // import { useState } from 'react';
 // import { Dialog, DialogPanel } from '@headlessui/react';
 import CascadeIcon from '@/shared/assets/logos/cascade.svg';
+import { Link } from '@tanstack/react-router';
+import { Button } from './ui/Button';
 import { Image } from './ui/Image';
-import { Link } from '@/shared/components/ui/Link';
 
 const navigation = [
   { name: 'Top Repos', href: '/' },
   { name: 'My Repos', href: '/my-repos' },
-  { name: '', href: '#' },
 ];
 
 export default function MainMenu() {
@@ -28,13 +26,14 @@ export default function MainMenu() {
           </a>
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-sm/6 font-semibold text-gray-900 dark:text-white"
-              >
-                {item.name}
-              </Link>
+              <Button asChild key={item.name}>
+                <Link
+                  to={item.href}
+                  className="text-sm/6 font-semibold text-gray-900 dark:text-white"
+                >
+                  {item.name}
+                </Link>
+              </Button>
             ))}
           </div>
         </div>

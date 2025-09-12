@@ -1,9 +1,10 @@
 import { cn } from '@/shared/utils/cn';
+import { Link as RouterLink } from '@tanstack/react-router';
 import { cva, type VariantProps } from 'class-variance-authority';
 import React from 'react';
 
 const linkVariants = cva(
-  'transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-sm', // base styles
+  'transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-sm',
   {
     variants: {
       variant: {
@@ -25,14 +26,22 @@ const linkVariants = cva(
   }
 );
 
-export interface LinkProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement>,
+export interface NavLinkProps
+  extends React.ComponentProps<typeof RouterLink>,
     VariantProps<typeof linkVariants> {}
 
-const Link: React.FC<LinkProps> = ({ className, variant, size, ...props }) => {
+const NavLink: React.FC<NavLinkProps> = ({
+  className,
+  variant,
+  size,
+  ...props
+}) => {
   return (
-    <a className={cn(linkVariants({ variant, size }), className)} {...props} />
+    <RouterLink
+      className={cn(linkVariants({ variant, size }), className)}
+      {...props}
+    />
   );
 };
 
-export { Link, linkVariants };
+export { linkVariants, NavLink };

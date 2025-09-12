@@ -5,10 +5,9 @@ import type {
 } from '@/api/relay/generated/MyRepos_RepositoryFragment.graphql';
 import Table from '@/shared/components/Table';
 import Card from '@/shared/components/ui/Card';
-import { Link, Route as TanStackRoute } from '@tanstack/react-router';
+import { Link, createFileRoute } from '@tanstack/react-router';
 import { type ColumnDef } from '@tanstack/react-table';
 import { graphql, useFragment, useLazyLoadQuery } from 'react-relay';
-import { Route as rootRoute } from './__root';
 
 const MyRepos_RepositoryFragment = graphql`
   fragment MyRepos_RepositoryFragment on Repository {
@@ -106,8 +105,6 @@ function MyReposComponent() {
   );
 }
 
-export const Route = new TanStackRoute({
-  getParentRoute: () => rootRoute,
-  path: '/my-repos',
+export const Route = createFileRoute('/my-repos')({
   component: MyReposComponent,
 });

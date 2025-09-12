@@ -1,6 +1,6 @@
 import type { RepoIdQuery } from '@/api/relay/generated/RepoIdQuery.graphql';
-import Card from '@/components/Card';
-import noAvatarSvg from '@/shared/assets/no-avatar.svg';
+import noAvatarSvg from '@/shared/assets/images/no-avatar.svg';
+import Card from '@/shared/components/ui/Card';
 import { Avatar } from '@ark-ui/react/avatar';
 import { createFileRoute } from '@tanstack/react-router';
 import { graphql, useLazyLoadQuery } from 'react-relay';
