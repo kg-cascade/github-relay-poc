@@ -42,7 +42,15 @@
 }
 
 @layer base {
-  [inert] ::-webkit-scrollbar {
-    display: none;
+  body {
+    @apply bg-white text-gray-900 font-sans leading-relaxed antialiased w-full;
+  }
+
+  .dark body {
+    @apply bg-gray-900 text-gray-100;
+  }
+
+  .lucide {
+    @apply text-red-500 w-[56px] h-[56px] stroke-1;
   }
 }

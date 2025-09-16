@@ -1,7 +1,7 @@
 import React from 'react';
 
 type ImageProps = {
-  icon: string;
+  svg: string; // ścieżka do pliku, np. import z Vite
   width?: number | string;
   height?: number | string;
   className?: string;
@@ -10,7 +10,7 @@ type ImageProps = {
 };
 
 export const Image = ({
-  icon,
+  svg,
   width,
   height,
   className,
@@ -19,7 +19,7 @@ export const Image = ({
 }: ImageProps) => {
   return (
     <img
-      src={icon}
+      src={svg}
       width={width}
       height={height}
       alt={alt}
