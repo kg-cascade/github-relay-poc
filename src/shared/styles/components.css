@@ -1,0 +1,50 @@
+@layer components {
+  /* Base interactive element */
+  .interactive {
+    @apply inline-flex items-center justify-center font-semibold rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  /* Variants */
+  .interactive-primary {
+    @apply bg-indigo-600 text-white hover:bg-indigo-500 focus:ring-indigo-600;
+  }
+
+  .interactive-secondary {
+    @apply bg-gray-500 text-black hover:bg-gray-400 focus:ring-gray-500;
+  }
+
+  .interactive-link {
+    @apply text-blue-600 hover:text-blue-800 underline focus:ring-blue-600;
+  }
+
+  /* Sizes */
+  .interactive-small {
+    @apply px-2 py-1 text-xs;
+  }
+  .interactive-normal {
+    @apply px-3 py-2 text-sm;
+  }
+  .interactive-large {
+    @apply px-4 py-3 text-lg;
+  }
+
+  /* States */
+  .interactive:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  .interactive-active {
+    @apply font-bold underline;
+  }
+
+  /* Dark mode */
+  .dark .interactive-primary {
+    @apply bg-indigo-500 text-white hover:bg-indigo-400 focus:ring-indigo-400;
+  }
+  .dark .interactive-secondary {
+    @apply bg-gray-700 text-white hover:bg-gray-600 focus:ring-gray-600;
+  }
+  .dark .interactive-link {
+    @apply text-blue-400 hover:text-blue-300 focus:ring-blue-300;
+  }
+}

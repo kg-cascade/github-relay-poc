@@ -1,16 +1,12 @@
-import type { MyReposQuery } from '@/api/relay/generated/MyReposQuery.graphql';
-import type {
-  MyRepos_RepositoryFragment$data,
-  MyRepos_RepositoryFragment$key,
-} from '@/api/relay/generated/MyRepos_RepositoryFragment.graphql';
+import type { myReposQuery } from '@/api/relay/generated/myReposQuery.graphql';
+import type { myRepos_RepositoryFragment$key } from '@/api/relay/generated/myRepos_RepositoryFragment.graphql';
 import Table from '@/shared/components/Table';
-import Card from '@/shared/components/ui/Card';
 import { Link, createFileRoute } from '@tanstack/react-router';
 import { type ColumnDef } from '@tanstack/react-table';
 import { graphql, useFragment, useLazyLoadQuery } from 'react-relay';
 
-const MyRepos_RepositoryFragment = graphql`
-  fragment MyRepos_RepositoryFragment on Repository {
+const myRepos_RepositoryFragment = graphql`
+  fragment myRepos_RepositoryFragment on Repository {
     id
     name
     nameWithOwner
@@ -24,16 +20,16 @@ const MyRepos_RepositoryFragment = graphql`
 `;
 
 function MyReposComponent() {
-  const data = useLazyLoadQuery<MyReposQuery>(
+  const data = useLazyLoadQuery<myReposQuery>(
     graphql`
-      query MyReposQuery {
+      query myReposQuery {
         viewer {
           repositories(
             first: 50
             orderBy: { field: UPDATED_AT, direction: DESC }
           ) {
             nodes {
-              ...MyRepos_RepositoryFragment
+              ...myRepos_RepositoryFragment
             }
           }
         }
@@ -48,8 +44,8 @@ function MyReposComponent() {
       ?.filter(Boolean)
       .map((repoRef) =>
         useFragment(
-          MyRepos_RepositoryFragment,
-          repoRef as MyRepos_RepositoryFragment$key
+          myRepos_RepositoryFragment,
+          repoRef as myRepos_RepositoryFragment$key
         )
       ) || [];
 
@@ -94,7 +90,6 @@ function MyReposComponent() {
 
   return (
     <div className="h-screen">
-      <Card>to jest text</Card>
       <h3 className="text-test text-2xl font-bold mb-4">My Repositories</h3>
       {repositories.length > 0 ? (
         <Table columns={columns} data={repositories} />
@@ -105,6 +100,6 @@ function MyReposComponent() {
   );
 }
 
-export const Route = createFileRoute('/my-repos')({
+export const Route = createFileRoute('/my-repos/')({
   component: MyReposComponent,
 });

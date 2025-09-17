@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@import './prism.css';
+@import './components.css';
 
 @plugin '@tailwindcss/typography';
 
@@ -42,8 +42,12 @@
 }
 
 @layer base {
+  html {
+    @apply h-full;
+  }
+
   body {
-    @apply bg-white text-gray-900 font-sans leading-relaxed antialiased w-full;
+    @apply bg-white text-gray-900 font-sans leading-relaxed antialiased w-full h-full;
   }
 
   .dark body {
@@ -51,6 +55,6 @@
   }
 
   .lucide {
-    @apply text-red-500 w-[56px] h-[56px] stroke-1;
+    @apply w-[56px] h-[56px] stroke-2;
   }
 }

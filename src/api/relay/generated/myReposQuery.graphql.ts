@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<250d2d95a7d3730dedb7e4f0575cf9a3>>
+ * @generated SignedSource<<7590151d2356073f6cdac03fe8418471>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,19 +10,19 @@
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type MyReposQuery$variables = Record<PropertyKey, never>;
-export type MyReposQuery$data = {
+export type myReposQuery$variables = Record<PropertyKey, never>;
+export type myReposQuery$data = {
   readonly viewer: {
     readonly repositories: {
       readonly nodes: ReadonlyArray<{
-        readonly " $fragmentSpreads": FragmentRefs<"MyRepos_RepositoryFragment">;
+        readonly " $fragmentSpreads": FragmentRefs<"myRepos_RepositoryFragment">;
       } | null | undefined> | null | undefined;
     };
   };
 };
-export type MyReposQuery = {
-  response: MyReposQuery$data;
-  variables: MyReposQuery$variables;
+export type myReposQuery = {
+  response: myReposQuery$data;
+  variables: myReposQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -60,7 +60,7 @@ return {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "MyReposQuery",
+    "name": "myReposQuery",
     "selections": [
       {
         "alias": null,
@@ -89,7 +89,7 @@ return {
                   {
                     "args": null,
                     "kind": "FragmentSpread",
-                    "name": "MyRepos_RepositoryFragment"
+                    "name": "myRepos_RepositoryFragment"
                   }
                 ],
                 "storageKey": null
@@ -108,7 +108,7 @@ return {
   "operation": {
     "argumentDefinitions": [],
     "kind": "Operation",
-    "name": "MyReposQuery",
+    "name": "myReposQuery",
     "selections": [
       {
         "alias": null,
@@ -190,16 +190,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "7c48061a3230750a912b25dcbf78d954",
+    "cacheID": "0c0c74895feaf30a2de409dafc42b32e",
     "id": null,
     "metadata": {},
-    "name": "MyReposQuery",
+    "name": "myReposQuery",
     "operationKind": "query",
-    "text": "query MyReposQuery {\n  viewer {\n    repositories(first: 50, orderBy: {field: UPDATED_AT, direction: DESC}) {\n      nodes {\n        ...MyRepos_RepositoryFragment\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment MyRepos_RepositoryFragment on Repository {\n  id\n  name\n  nameWithOwner\n  description\n  stargazerCount\n  visibility\n  primaryLanguage {\n    name\n    id\n  }\n}\n"
+    "text": "query myReposQuery {\n  viewer {\n    repositories(first: 50, orderBy: {field: UPDATED_AT, direction: DESC}) {\n      nodes {\n        ...myRepos_RepositoryFragment\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment myRepos_RepositoryFragment on Repository {\n  id\n  name\n  nameWithOwner\n  description\n  stargazerCount\n  visibility\n  primaryLanguage {\n    name\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "17aeb95b5b8c159fefcb02074d88b7dd";
+(node as any).hash = "6518b52db7338c2c7ce650bb983e89e5";
 
 export default node;

@@ -1,47 +1,76 @@
 import { cn } from '@/shared/utils/cn';
-import { Link as RouterLink } from '@tanstack/react-router';
+import {
+  Link,
+  type LinkProps as TanstackLinkProps,
+} from '@tanstack/react-router';
 import { cva, type VariantProps } from 'class-variance-authority';
-import React from 'react';
+import type { LucideIcon } from 'lucide-react';
+import * as React from 'react';
 
-const linkVariants = cva(
-  'transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-sm',
+const navLinkVariants = cva(
+  'inline-flex items-center gap-x-3 rounded-md font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed',
   {
     variants: {
       variant: {
-        default: 'text-blue-600 hover:text-blue-800 underline',
-        muted: 'text-gray-500 hover:text-gray-700',
-        button:
-          'inline-flex items-center px-3 py-1.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md',
+        primary: 'text-gray-400 hover:bg-white/5 focus:ring-white',
+        secondary: 'text-gray-400 hover:bg-white/5 focus:ring-white',
+        link: 'text-blue-600 hover:text-blue-800 underline focus:ring-blue-600 dark:text-blue-400 dark:hover:text-blue-300',
       },
       size: {
-        sm: 'text-sm',
-        md: 'text-base',
-        lg: 'text-lg',
+        small: 'text-sm px-2 py-1',
+        normal: 'text-sm/6 px-3 py-2',
+      },
+      active: {
+        true: 'bg-white/5 text-white font-bold',
+        false: '',
+      },
+      iconPosition: {
+        leading: 'flex-row',
+        trailing: 'flex-row-reverse',
       },
     },
     defaultVariants: {
-      variant: 'default',
-      size: 'md',
+      variant: 'primary',
+      size: 'normal',
+      active: false,
+      iconPosition: 'leading',
     },
   }
 );
 
 export interface NavLinkProps
-  extends React.ComponentProps<typeof RouterLink>,
-    VariantProps<typeof linkVariants> {}
+  extends Omit<TanstackLinkProps, 'children'>,
+    VariantProps<typeof navLinkVariants> {
+  children?: React.ReactNode;
+  icon?: LucideIcon;
+  linkClassName?: string;
+  spanClassName?: string;
+}
 
-const NavLink: React.FC<NavLinkProps> = ({
-  className,
+export const NavLink: React.FC<NavLinkProps> = ({
   variant,
   size,
+  iconPosition,
+  icon: Icon,
+  children,
+  linkClassName,
+  spanClassName,
   ...props
 }) => {
   return (
-    <RouterLink
-      className={cn(linkVariants({ variant, size }), className)}
-      {...props}
-    />
+    <Link {...props}>
+      {({ isActive }) => (
+        <span
+          className={cn(
+            navLinkVariants({ variant, size, active: isActive, iconPosition }),
+            linkClassName,
+            spanClassName
+          )}
+        >
+          {Icon && <Icon className="size-6 shrink-0" />}
+          {children}
+        </span>
+      )}
+    </Link>
   );
 };
-
-export { linkVariants, NavLink };

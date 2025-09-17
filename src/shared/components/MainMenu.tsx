@@ -1,13 +1,13 @@
 // import { useState } from 'react';
 // import { Dialog, DialogPanel } from '@headlessui/react';
 import CascadeIcon from '@/shared/assets/logos/cascade.svg';
-import { Link } from '@tanstack/react-router';
+import { type ToOptions } from '@tanstack/react-router';
 import { useEffect } from 'react';
-import { Button } from './ui/Button';
 import { Image } from './ui/Image';
+import { NavLink } from './ui/NavLink';
 import { Switch } from './ui/Switch';
 
-const navigation = [
+const navigation: { name: string; href: ToOptions['to'] }[] = [
   { name: 'Top Repos', href: '/' },
   { name: 'My Repos', href: '/my-repos' },
 ];
@@ -38,14 +38,13 @@ export default function MainMenu() {
           </a>
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation.map((item) => (
-              <Button asChild key={item.name}>
-                <Link
-                  to={item.href}
-                  className="text-sm/6 font-semibold text-gray-900 dark:text-white"
-                >
-                  {item.name}
-                </Link>
-              </Button>
+              <NavLink
+                key={item.name}
+                to={item.href}
+                className="text-sm/6 font-semibold text-gray-900 dark:text-white"
+              >
+                {item.name}
+              </NavLink>
             ))}
           </div>
         </div>

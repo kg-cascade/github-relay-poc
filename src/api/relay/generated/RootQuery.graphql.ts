@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<82ea20a8a76dc3f3a8811456b47e2556>>
+ * @generated SignedSource<<4896e991269a11c77d25be05b9419388>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,7 +13,7 @@ import { FragmentRefs } from "relay-runtime";
 export type RootQuery$variables = Record<PropertyKey, never>;
 export type RootQuery$data = {
   readonly viewer: {
-    readonly " $fragmentSpreads": FragmentRefs<"Layout_viewer">;
+    readonly " $fragmentSpreads": FragmentRefs<"LoggedUser_user">;
   };
 };
 export type RootQuery = {
@@ -39,7 +39,7 @@ const node: ConcreteRequest = {
           {
             "args": null,
             "kind": "FragmentSpread",
-            "name": "Layout_viewer"
+            "name": "LoggedUser_user"
           }
         ],
         "storageKey": null
@@ -62,13 +62,6 @@ const node: ConcreteRequest = {
         "name": "viewer",
         "plural": false,
         "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "login",
-            "storageKey": null
-          },
           {
             "alias": null,
             "args": null,
@@ -96,15 +89,15 @@ const node: ConcreteRequest = {
     ]
   },
   "params": {
-    "cacheID": "00ac973abc758f9de3436a1536bbbcbc",
+    "cacheID": "aa7673dec27ce8c88ec6ff6f8cf0d46f",
     "id": null,
     "metadata": {},
     "name": "RootQuery",
     "operationKind": "query",
-    "text": "query RootQuery {\n  viewer {\n    ...Layout_viewer\n    id\n  }\n}\n\nfragment Layout_viewer on User {\n  login\n  name\n  avatarUrl\n}\n"
+    "text": "query RootQuery {\n  viewer {\n    ...LoggedUser_user\n    id\n  }\n}\n\nfragment LoggedUser_user on User {\n  name\n  avatarUrl\n}\n"
   }
 };
 
-(node as any).hash = "383cf4ea12f488459ba184fd01dd61df";
+(node as any).hash = "9a057c25bc44137c0d23645ef2ea412d";
 
 export default node;

@@ -1,7 +1,7 @@
 import type { TopReposAuthorHoverCardQuery } from '@/api/relay/generated/TopReposAuthorHoverCardQuery.graphql';
 import type { TopReposQuery } from '@/api/relay/generated/TopReposQuery.graphql';
 import type { TopRepos_search$key } from '@/api/relay/generated/TopRepos_search.graphql';
-import AuthorHoverCardContent from '@/features/top-repos/components/AuthorHoverCardContent';
+import AuthorHoverCardContent from '@/routes/(top-repos)/-components/AuthorHoverCardContent';
 import Spinner from '@/shared/components/ui/Spinner';
 import Table from '@/shared/components/Table';
 import { Button } from '@/shared/components/ui/Button';
@@ -228,6 +228,6 @@ function IndexComponent() {
   return <TopRepositories query={data} />;
 }
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute('/(top-repos)/')({
   component: IndexComponent, // Use the new component name
 });

@@ -9,17 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './__root'
-import { Route as MyReposRouteImport } from './my-repos'
-import { Route as IndexRouteImport } from './index'
+import { Route as MyReposIndexRouteImport } from './my-repos/index'
+import { Route as topReposIndexRouteImport } from './(top-repos)/index'
 import { Route as RepoRepoIdRouteImport } from './repo/$repoId'
 
-const MyReposRoute = MyReposRouteImport.update({
-  id: '/my-repos',
-  path: '/my-repos',
+const MyReposIndexRoute = MyReposIndexRouteImport.update({
+  id: '/my-repos/',
+  path: '/my-repos/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
+const topReposIndexRoute = topReposIndexRouteImport.update({
+  id: '/(top-repos)/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
@@ -30,49 +30,49 @@ const RepoRepoIdRoute = RepoRepoIdRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/my-repos': typeof MyReposRoute
   '/repo/$repoId': typeof RepoRepoIdRoute
+  '/': typeof topReposIndexRoute
+  '/my-repos': typeof MyReposIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/my-repos': typeof MyReposRoute
   '/repo/$repoId': typeof RepoRepoIdRoute
+  '/': typeof topReposIndexRoute
+  '/my-repos': typeof MyReposIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/my-repos': typeof MyReposRoute
   '/repo/$repoId': typeof RepoRepoIdRoute
+  '/(top-repos)/': typeof topReposIndexRoute
+  '/my-repos/': typeof MyReposIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/my-repos' | '/repo/$repoId'
+  fullPaths: '/repo/$repoId' | '/' | '/my-repos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/my-repos' | '/repo/$repoId'
-  id: '__root__' | '/' | '/my-repos' | '/repo/$repoId'
+  to: '/repo/$repoId' | '/' | '/my-repos'
+  id: '__root__' | '/repo/$repoId' | '/(top-repos)/' | '/my-repos/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  MyReposRoute: typeof MyReposRoute
   RepoRepoIdRoute: typeof RepoRepoIdRoute
+  topReposIndexRoute: typeof topReposIndexRoute
+  MyReposIndexRoute: typeof MyReposIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/my-repos': {
-      id: '/my-repos'
+    '/my-repos/': {
+      id: '/my-repos/'
       path: '/my-repos'
       fullPath: '/my-repos'
-      preLoaderRoute: typeof MyReposRouteImport
+      preLoaderRoute: typeof MyReposIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
+    '/(top-repos)/': {
+      id: '/(top-repos)/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+      preLoaderRoute: typeof topReposIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/repo/$repoId': {
@@ -86,9 +86,9 @@ declare module '@tanstack/react-router' {
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  MyReposRoute: MyReposRoute,
   RepoRepoIdRoute: RepoRepoIdRoute,
+  topReposIndexRoute: topReposIndexRoute,
+  MyReposIndexRoute: MyReposIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

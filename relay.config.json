@@ -1,6 +1,6 @@
 {
   "src": "./src",
-  "schema": "./src/queries/schema.graphql",
+  "schema": "./src/api/schema.graphql",
   "language": "typescript",
   "exclude": ["**/node_modules/**", "**/__mocks__/**", "**/schema.docs.graphql"],
   "eagerEsModules": true,
