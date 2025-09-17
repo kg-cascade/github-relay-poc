@@ -1,6 +1,10 @@
 import type { myReposQuery } from '@/api/relay/generated/myReposQuery.graphql';
-import type { myRepos_RepositoryFragment$key } from '@/api/relay/generated/myRepos_RepositoryFragment.graphql';
+import type {
+  myRepos_RepositoryFragment$data,
+  myRepos_RepositoryFragment$key,
+} from '@/api/relay/generated/myRepos_RepositoryFragment.graphql';
 import Table from '@/shared/components/Table';
+import { useInView } from '@/shared/hooks/useInView';
 import { Link, createFileRoute } from '@tanstack/react-router';
 import { type ColumnDef } from '@tanstack/react-table';
 import { graphql, useFragment, useLazyLoadQuery } from 'react-relay';
@@ -49,7 +53,7 @@ function MyReposComponent() {
         )
       ) || [];
 
-  const columns: ColumnDef<MyRepos_RepositoryFragment$data>[] = [
+  const columns: ColumnDef<myRepos_RepositoryFragment$data>[] = [
     {
       id: '#',
       header: '#',
@@ -88,8 +92,10 @@ function MyReposComponent() {
     },
   ];
 
+  const { ref } = useInView<HTMLDivElement>();
+
   return (
-    <div className="h-screen">
+    <div className="h-screen" ref={ref}>
       <h3 className="text-test text-2xl font-bold mb-4">My Repositories</h3>
       {repositories.length > 0 ? (
         <Table columns={columns} data={repositories} />

@@ -17,6 +17,7 @@ import {
   useQueryLoader,
 } from 'react-relay';
 import { NavLink } from '@/shared/components/ui/NavLink';
+import { useInView } from '@/shared/hooks/useInView';
 
 // All content from TopRepos.tsx below this line
 
@@ -170,8 +171,10 @@ function TopRepositories(props: { query: TopRepos_search$key }) {
     },
   ];
 
+  const { ref } = useInView<HTMLDivElement>();
+
   return (
-    <div className="p-2">
+    <div className="p-2" ref={ref}>
       {' '}
       <h1 className="text-xl font-semibold mb-2">
         Top Repositories (by stars)
