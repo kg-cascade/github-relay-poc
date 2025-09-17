@@ -13,6 +13,8 @@ const buttonVariants = cva(
         secondary:
           'bg-gray-500 text-black hover:bg-gray-400 focus:ring-gray-500 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600',
         link: 'text-blue-600 hover:text-blue-800 underline focus:ring-blue-600 dark:text-blue-400 dark:hover:text-blue-300 dark:focus:ring-blue-300',
+        ghost:
+          'bg-transparent hover:bg-gray-200 dark:hover:bg-gray-800 focus:ring-0',
       },
       size: {
         small: 'px-2 py-1 text-xs',
@@ -58,16 +60,21 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
+    const onlyIcon = !!Icon && !children;
     return (
       <button
         ref={ref}
         className={cn(
           buttonVariants({ variant, size, shape, iconPosition }),
+          onlyIcon && 'justify-center items-center',
+          onlyIcon && size === 'small' && 'p-2 text-xs',
+          onlyIcon && size === 'normal' && 'p-3 text-sm',
+          onlyIcon && size === 'large' && 'p-4 text-lg',
           className
         )}
         {...props}
       >
-        {Icon && <Icon className="mr-2 h-4 w-4" />}
+        {Icon && <Icon className={onlyIcon ? 'h-4 w-4 m-0' : 'mr-2 h-4 w-4'} />}
         {children}
       </button>
     );

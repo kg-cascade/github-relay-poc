@@ -9,13 +9,16 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 // import { useState } from 'react';
+import { graphql, loadQuery, usePreloadedQuery } from 'react-relay';
 import { type FileRouteTypes } from './routeTree.gen';
-import { usePreloadedQuery, loadQuery } from 'react-relay';
-import RootQuery from '../api/relay/generated/RootQuery.graphql';
-import { LoggedUser } from './-components/LoggedUser';
 
-import { RelayEnviroment } from '../api/relay/RelayEnvironment';
+import { LoggedUser } from './-components/LoggedUser/LoggedUser';
+
 import { useLoaderData } from '@tanstack/react-router';
+import { Suspense } from 'react';
+import { RelayEnviroment } from '../api/relay/RelayEnvironment';
+import LoggedUserSkeleton from './-components/LoggedUser/LoggedUserSkeleton';
+import Settings from './(settings)/Settings';
 
 type NavigationItem = {
   name: string;
@@ -48,6 +51,15 @@ const teams = [
   },
   { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
 ];
+
+const RootQuery = graphql`
+  query RootQuery {
+    viewer {
+      ...LoggedUser_user
+      id
+    }
+  }
+`;
 
 export default function RootLayout() {
   // const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -208,7 +220,12 @@ export default function RootLayout() {
                   </ul>
                 </li>
                 <li className="-mx-6 mt-auto">
-                  <LoggedUser user={data.viewer} />
+                  <Suspense fallback={<LoggedUserSkeleton />}>
+                    <LoggedUser user={data.viewer} />
+                  </Suspense>
+                </li>
+                <li>
+                  <Settings />
                 </li>
               </ul>
             </nav>
@@ -218,7 +235,7 @@ export default function RootLayout() {
         <div className="sticky top-0 z-40 flex items-center gap-x-6 bg-gray-900 px-4 py-4 shadow-sm sm:px-6 lg:hidden">
           <button
             type="button"
-            onClick={() => setSidebarOpen(true)}
+            // onClick={() => setSidebarOpen(true)}
             className="-m-2.5 p-2.5 text-gray-400 hover:text-white lg:hidden"
           >
             <span className="sr-only">Open sidebar</span>
@@ -227,7 +244,10 @@ export default function RootLayout() {
           <div className="flex-1 text-sm/6 font-semibold text-white">
             Dashboard
           </div>
-          <LoggedUser user={data.viewer} />
+          <Settings />
+          <Suspense fallback={<LoggedUserSkeleton />}>
+            <LoggedUser user={data.viewer} />
+          </Suspense>
         </div>
 
         <main className="py-10 lg:pl-72">
