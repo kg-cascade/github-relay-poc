@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1e327e45a8462341fd3f8e2eb2036807>>
+ * @generated SignedSource<<37aaebec3a4be914f971cfb419aeb36f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -29,16 +29,7 @@ var v0 = {
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
-},
-v1 = [
-  {
-    "alias": null,
-    "args": null,
-    "kind": "ScalarField",
-    "name": "totalCount",
-    "storageKey": null
-  }
-];
+};
 return {
   "fragment": {
     "argumentDefinitions": [],
@@ -92,13 +83,6 @@ return {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "avatarUrl",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
             "name": "login",
             "storageKey": null
           },
@@ -106,76 +90,7 @@ return {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "bio",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "email",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "location",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "url",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "websiteUrl",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "company",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "createdAt",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "isViewer",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "concreteType": "FollowerConnection",
-            "kind": "LinkedField",
-            "name": "followers",
-            "plural": false,
-            "selections": (v1/*: any*/),
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "concreteType": "FollowingConnection",
-            "kind": "LinkedField",
-            "name": "following",
-            "plural": false,
-            "selections": (v1/*: any*/),
+            "name": "avatarUrl",
             "storageKey": null
           },
           (v0/*: any*/)
@@ -185,12 +100,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "8b346dc533e2f7902a5336529fc7ea72",
+    "cacheID": "6e73316302a6ded98795677ae503a99e",
     "id": null,
     "metadata": {},
     "name": "RootQuery",
     "operationKind": "query",
-    "text": "query RootQuery {\n  viewer {\n    ...LoggedUser_user\n    id\n  }\n}\n\nfragment LoggedUser_user on User {\n  name\n  avatarUrl\n  login\n  bio\n  email\n  location\n  url\n  websiteUrl\n  company\n  createdAt\n  isViewer\n  followers {\n    totalCount\n  }\n  following {\n    totalCount\n  }\n}\n"
+    "text": "query RootQuery {\n  viewer {\n    ...LoggedUser_user\n    id\n  }\n}\n\nfragment LoggedUser_user on User {\n  name\n  login\n  avatarUrl\n}\n"
   }
 };
 })();

@@ -5,6 +5,7 @@ import type {
   myRepos_RepositoryFragment$key,
 } from '@/api/relay/generated/myRepos_RepositoryFragment.graphql';
 import Table from '@/shared/components/Table';
+import { useInView } from '@/shared/hooks/useInView';
 import { Link, createFileRoute } from '@tanstack/react-router';
 import { type ColumnDef } from '@tanstack/react-table';
 import {
@@ -123,8 +124,10 @@ function MyReposComponent() {
     },
   ];
 
+  const { ref: animationRef } = useInView<HTMLDivElement>();
+
   return (
-    <div className="h-screen">
+    <div className="h-screen" ref={animationRef}>
       <h3 className="text-test text-2xl font-bold mb-4">My Repositories</h3>
       {repositories.length > 0 ? (
         <Table columns={columns} data={repositories} />
