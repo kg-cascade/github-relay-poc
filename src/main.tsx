@@ -2,27 +2,40 @@ import '@/shared/styles/tailwind.css';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import { RelayEnvironmentProvider } from 'react-relay';
-document.documentElement.classList.add('dark');
 
 import { createRouter, RouterProvider } from '@tanstack/react-router';
+import { RelayEnvironment } from './api/relay/RelayEnvironment';
 import { routeTree } from './routes/routeTree.gen';
+import { type Environment as RelayEnvironmentType } from 'relay-runtime';
 
-import { RelayEnviroment } from './api/relay/RelayEnvironment';
+document.documentElement.classList.add('dark');
 
-const router = createRouter({ routeTree });
+// Define the custom context type
+interface RouterContext {
+  relayEnvironment: RelayEnvironmentType;
+}
+
+const router = createRouter({
+  routeTree,
+  context: {
+    relayEnvironment: RelayEnvironment,
+  },
+});
 
 // Register the router instance for type safety
 declare module '@tanstack/react-router' {
   interface Register {
     router: typeof router;
+    routerContext: RouterContext;
   }
 }
 
 const rootElement = document.getElementById('root')!;
 const root = ReactDOM.createRoot(rootElement);
+
 root.render(
   <StrictMode>
-    <RelayEnvironmentProvider environment={RelayEnviroment}>
+    <RelayEnvironmentProvider environment={RelayEnvironment}>
       <RouterProvider router={router} />
     </RelayEnvironmentProvider>
   </StrictMode>

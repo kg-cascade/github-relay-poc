@@ -29,7 +29,7 @@ const fetchGraphQL: FetchFunction = async (request, variables) => {
   return await resp.json();
 };
 
-export const RelayEnviroment = new Environment({
+export const RelayEnvironment = new Environment({
   network: Network.create(fetchGraphQL),
   store: new Store(new RecordSource()),
 });

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<7590151d2356073f6cdac03fe8418471>>
+ * @generated SignedSource<<495897b67f1debd4bfe72c48a8685789>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,14 +10,13 @@
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type myReposQuery$variables = Record<PropertyKey, never>;
+export type myReposQuery$variables = {
+  after?: string | null | undefined;
+  first?: number | null | undefined;
+};
 export type myReposQuery$data = {
   readonly viewer: {
-    readonly repositories: {
-      readonly nodes: ReadonlyArray<{
-        readonly " $fragmentSpreads": FragmentRefs<"myRepos_RepositoryFragment">;
-      } | null | undefined> | null | undefined;
-    };
+    readonly " $fragmentSpreads": FragmentRefs<"myReposPaginationFragment">;
   };
 };
 export type myReposQuery = {
@@ -26,11 +25,26 @@ export type myReposQuery = {
 };
 
 const node: ConcreteRequest = (function(){
-var v0 = [
+var v0 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "after"
+},
+v1 = {
+  "defaultValue": 10,
+  "kind": "LocalArgument",
+  "name": "first"
+},
+v2 = [
   {
-    "kind": "Literal",
+    "kind": "Variable",
+    "name": "after",
+    "variableName": "after"
+  },
+  {
+    "kind": "Variable",
     "name": "first",
-    "value": 50
+    "variableName": "first"
   },
   {
     "kind": "Literal",
@@ -41,14 +55,14 @@ var v0 = [
     }
   }
 ],
-v1 = {
+v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
 },
-v2 = {
+v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -57,7 +71,10 @@ v2 = {
 };
 return {
   "fragment": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": [
+      (v0/*: any*/),
+      (v1/*: any*/)
+    ],
     "kind": "Fragment",
     "metadata": null,
     "name": "myReposQuery",
@@ -71,31 +88,9 @@ return {
         "plural": false,
         "selections": [
           {
-            "alias": null,
-            "args": (v0/*: any*/),
-            "concreteType": "RepositoryConnection",
-            "kind": "LinkedField",
-            "name": "repositories",
-            "plural": false,
-            "selections": [
-              {
-                "alias": null,
-                "args": null,
-                "concreteType": "Repository",
-                "kind": "LinkedField",
-                "name": "nodes",
-                "plural": true,
-                "selections": [
-                  {
-                    "args": null,
-                    "kind": "FragmentSpread",
-                    "name": "myRepos_RepositoryFragment"
-                  }
-                ],
-                "storageKey": null
-              }
-            ],
-            "storageKey": "repositories(first:50,orderBy:{\"direction\":\"DESC\",\"field\":\"UPDATED_AT\"})"
+            "args": null,
+            "kind": "FragmentSpread",
+            "name": "myReposPaginationFragment"
           }
         ],
         "storageKey": null
@@ -106,7 +101,10 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": [
+      (v1/*: any*/),
+      (v0/*: any*/)
+    ],
     "kind": "Operation",
     "name": "myReposQuery",
     "selections": [
@@ -120,7 +118,7 @@ return {
         "selections": [
           {
             "alias": null,
-            "args": (v0/*: any*/),
+            "args": (v2/*: any*/),
             "concreteType": "RepositoryConnection",
             "kind": "LinkedField",
             "name": "repositories",
@@ -129,77 +127,138 @@ return {
               {
                 "alias": null,
                 "args": null,
-                "concreteType": "Repository",
+                "concreteType": "RepositoryEdge",
                 "kind": "LinkedField",
-                "name": "nodes",
+                "name": "edges",
                 "plural": true,
                 "selections": [
-                  (v1/*: any*/),
-                  (v2/*: any*/),
                   {
                     "alias": null,
                     "args": null,
-                    "kind": "ScalarField",
-                    "name": "nameWithOwner",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "description",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "stargazerCount",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "visibility",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "concreteType": "Language",
+                    "concreteType": "Repository",
                     "kind": "LinkedField",
-                    "name": "primaryLanguage",
+                    "name": "node",
                     "plural": false,
                     "selections": [
-                      (v2/*: any*/),
-                      (v1/*: any*/)
+                      (v3/*: any*/),
+                      (v4/*: any*/),
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "nameWithOwner",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "description",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "stargazerCount",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "visibility",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "Language",
+                        "kind": "LinkedField",
+                        "name": "primaryLanguage",
+                        "plural": false,
+                        "selections": [
+                          (v4/*: any*/),
+                          (v3/*: any*/)
+                        ],
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "__typename",
+                        "storageKey": null
+                      }
                     ],
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "cursor",
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "PageInfo",
+                "kind": "LinkedField",
+                "name": "pageInfo",
+                "plural": false,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "endCursor",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "hasNextPage",
                     "storageKey": null
                   }
                 ],
                 "storageKey": null
               }
             ],
-            "storageKey": "repositories(first:50,orderBy:{\"direction\":\"DESC\",\"field\":\"UPDATED_AT\"})"
+            "storageKey": null
           },
-          (v1/*: any*/)
+          {
+            "alias": null,
+            "args": (v2/*: any*/),
+            "filters": [
+              "orderBy"
+            ],
+            "handle": "connection",
+            "key": "myRepos_repositories",
+            "kind": "LinkedHandle",
+            "name": "repositories"
+          },
+          (v3/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "0c0c74895feaf30a2de409dafc42b32e",
+    "cacheID": "16708c414152d271b0b1dd18bbc0d2ee",
     "id": null,
     "metadata": {},
     "name": "myReposQuery",
     "operationKind": "query",
-    "text": "query myReposQuery {\n  viewer {\n    repositories(first: 50, orderBy: {field: UPDATED_AT, direction: DESC}) {\n      nodes {\n        ...myRepos_RepositoryFragment\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment myRepos_RepositoryFragment on Repository {\n  id\n  name\n  nameWithOwner\n  description\n  stargazerCount\n  visibility\n  primaryLanguage {\n    name\n    id\n  }\n}\n"
+    "text": "query myReposQuery(\n  $first: Int = 10\n  $after: String\n) {\n  viewer {\n    ...myReposPaginationFragment\n    id\n  }\n}\n\nfragment myReposPaginationFragment on User {\n  repositories(first: $first, after: $after, orderBy: {field: UPDATED_AT, direction: DESC}) {\n    edges {\n      node {\n        ...myRepos_RepositoryFragment\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment myRepos_RepositoryFragment on Repository {\n  id\n  name\n  nameWithOwner\n  description\n  stargazerCount\n  visibility\n  primaryLanguage {\n    name\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "6518b52db7338c2c7ce650bb983e89e5";
+(node as any).hash = "a541347d4a9e9b516be61bdd77e428ec";
 
 export default node;
