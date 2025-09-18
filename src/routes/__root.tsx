@@ -1,4 +1,5 @@
 import type { RootQuery } from '@/api/relay/generated/RootQuery.graphql';
+import PageSuspense from '@/shared/components/PageSuspense';
 import { NavLink } from '@/shared/components/ui/NavLink';
 import { cn } from '@/shared/utils/cn';
 import { createRootRoute, Outlet, useLoaderData } from '@tanstack/react-router';
@@ -169,7 +170,11 @@ export default function RootLayout() {
 }
 
 export const Route = createRootRoute({
-  component: RootLayout,
+  component: () => (
+    <Suspense fallback={<PageSuspense />}>
+      <RootLayout />
+    </Suspense>
+  ),
   loader: ({ context }) => {
     const relayEnvironment = (context as RouterContext).relayEnvironment;
 

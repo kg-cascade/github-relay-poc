@@ -4,10 +4,12 @@ import type {
   myRepos_RepositoryFragment$data,
   myRepos_RepositoryFragment$key,
 } from '@/api/relay/generated/myRepos_RepositoryFragment.graphql';
+import PageSuspense from '@/shared/components/PageSuspense';
 import Table from '@/shared/components/Table';
 import { useInView } from '@/shared/hooks/useInView';
 import { Link, createFileRoute } from '@tanstack/react-router';
 import { type ColumnDef } from '@tanstack/react-table';
+import { Suspense } from 'react';
 import {
   graphql,
   useFragment,
@@ -139,5 +141,9 @@ function MyReposComponent() {
 }
 
 export const Route = createFileRoute('/my-repos/')({
-  component: MyReposComponent,
+  component: () => (
+    <Suspense fallback={<PageSuspense />}>
+      <MyReposComponent />
+    </Suspense>
+  ),
 });

@@ -1,12 +1,18 @@
 import type { RepoIdQuery } from '@/api/relay/generated/RepoIdQuery.graphql';
 import noAvatarSvg from '@/shared/assets/images/no-avatar.svg';
+import PageSuspense from '@/shared/components/PageSuspense';
 import Card from '@/shared/components/ui/Card';
 import { Avatar } from '@ark-ui/react/avatar';
 import { createFileRoute } from '@tanstack/react-router';
+import { Suspense } from 'react';
 import { graphql, useLazyLoadQuery } from 'react-relay';
 
 export const Route = createFileRoute('/repo/$repoId')({
-  component: RepoPage,
+  component: () => (
+    <Suspense fallback={<PageSuspense />}>
+      <RepoPage />
+    </Suspense>
+  ),
 });
 
 function RepoPage() {
