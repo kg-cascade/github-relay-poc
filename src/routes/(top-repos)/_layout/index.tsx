@@ -1,12 +1,14 @@
-import type { TopReposAuthorHoverCardQuery } from '@/api/relay/generated/TopReposAuthorHoverCardQuery.graphql';
-import type { TopReposQuery } from '@/api/relay/generated/TopReposQuery.graphql';
-import type { TopRepos_search$key } from '@/api/relay/generated/TopRepos_search.graphql';
+import type { LayoutAuthorHoverCardQuery } from '@/api/relay/generated/LayoutAuthorHoverCardQuery.graphql';
+import type { LayoutQuery } from '@/api/relay/generated/LayoutQuery.graphql';
+import type { Layout_search$key } from '@/api/relay/generated/Layout_search.graphql';
 import AuthorHoverCardContent from '@/routes/(top-repos)/-components/AuthorHoverCardContent';
-import Spinner from '@/shared/components/ui/Spinner';
 import Table from '@/shared/components/Table';
 import { Button } from '@/shared/components/ui/Button';
 import HoverCard from '@/shared/components/ui/HoverCard';
 import Input from '@/shared/components/ui/Input';
+import { NavLink } from '@/shared/components/ui/NavLink';
+import Spinner from '@/shared/components/ui/Spinner';
+import { useInView } from '@/shared/hooks/useInView';
 import { createFileRoute } from '@tanstack/react-router'; // Keep createFileRoute
 import { type ColumnDef, type Row } from '@tanstack/react-table';
 import { Suspense, useMemo, useState } from 'react';
@@ -16,13 +18,11 @@ import {
   usePaginationFragment,
   useQueryLoader,
 } from 'react-relay';
-import { NavLink } from '@/shared/components/ui/NavLink';
-import { useInView } from '@/shared/hooks/useInView';
 
 // All content from TopRepos.tsx below this line
 
 const AuthorHoverCardQuery = graphql`
-  query TopReposAuthorHoverCardQuery($login: String!) {
+  query LayoutAuthorHoverCardQuery($login: String!) {
     user(login: $login) {
       ...AuthorHoverCardContent_AuthorDetailsFragment
     }
@@ -49,7 +49,7 @@ type Repository = {
 
 const NameCell = ({ row }: { row: Row<Repository> }) => {
   const [queryRef, loadQuery] =
-    useQueryLoader<TopReposAuthorHoverCardQuery>(AuthorHoverCardQuery);
+    useQueryLoader<LayoutAuthorHoverCardQuery>(AuthorHoverCardQuery);
 
   const handleMouseEnter = () => {
     if (!queryRef) {
@@ -67,8 +67,9 @@ const NameCell = ({ row }: { row: Row<Repository> }) => {
         }
       >
         <NavLink
-          to={`/repo/${row.original.id}`}
-          className="text-gray-300 hover:text-gray-500 underline"
+          to="/repo/$repoId"
+          params={{ repoId: row.original.id }}
+          linkClassName="text-gray-300 hover:text-gray-500 underline"
         >
           {row.original.nameWithOwner}
         </NavLink>
@@ -77,21 +78,21 @@ const NameCell = ({ row }: { row: Row<Repository> }) => {
   );
 };
 
-function TopRepositories(props: { query: TopRepos_search$key }) {
+function TopRepositories(props: { query: Layout_search$key }) {
   const { data, loadNext, hasNext, isLoadingNext } = usePaginationFragment(
     graphql`
-      fragment TopRepos_search on Query
+      fragment Layout_search on Query
       @argumentDefinitions(
         cursor: { type: "String" }
         count: { type: "Int", defaultValue: 10 }
       )
-      @refetchable(queryName: "TopReposPaginationQuery") {
+      @refetchable(queryName: "LayoutPaginationQuery") {
         search(
           query: "stars:>1000"
           type: REPOSITORY
           first: $count
           after: $cursor
-        ) @connection(key: "TopRepos_search") {
+        ) @connection(key: "Layout_search") {
           edges {
             node {
               ... on Repository {
@@ -219,10 +220,10 @@ function TopRepositories(props: { query: TopRepos_search$key }) {
 
 function IndexComponent() {
   // Renamed from TopReposPage to avoid conflict and better reflect its new home
-  const data = useLazyLoadQuery<TopReposQuery>(
+  const data = useLazyLoadQuery<LayoutQuery>(
     graphql`
-      query TopReposQuery($cursor: String, $count: Int = 10) {
-        ...TopRepos_search @arguments(cursor: $cursor, count: $count)
+      query LayoutQuery($cursor: String, $count: Int = 10) {
+        ...Layout_search @arguments(cursor: $cursor, count: $count)
       }
     `,
     {}
@@ -231,6 +232,6 @@ function IndexComponent() {
   return <TopRepositories query={data} />;
 }
 
-export const Route = createFileRoute('/(top-repos)/')({
+export const Route = createFileRoute('/(top-repos)/_layout/')({
   component: IndexComponent, // Use the new component name
 });

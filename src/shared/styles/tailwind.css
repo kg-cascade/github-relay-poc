@@ -55,6 +55,6 @@
   }
 
   .lucide {
-    @apply w-[56px] h-[56px] stroke-2;
+    @apply w-[16px] h-[16px] stroke-2;
   }
 }

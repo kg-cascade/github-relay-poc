@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<6ac490858e06ce61ca1e8f865fd15c73>>
+ * @generated SignedSource<<757c858ca7df9e676f35327017351e3b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,16 +10,16 @@
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type TopReposQuery$variables = {
+export type LayoutQuery$variables = {
   count?: number | null | undefined;
   cursor?: string | null | undefined;
 };
-export type TopReposQuery$data = {
-  readonly " $fragmentSpreads": FragmentRefs<"TopRepos_search">;
+export type LayoutQuery$data = {
+  readonly " $fragmentSpreads": FragmentRefs<"Layout_search">;
 };
-export type TopReposQuery = {
-  response: TopReposQuery$data;
-  variables: TopReposQuery$variables;
+export type LayoutQuery = {
+  response: LayoutQuery$data;
+  variables: LayoutQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -84,7 +84,7 @@ return {
     ],
     "kind": "Fragment",
     "metadata": null,
-    "name": "TopReposQuery",
+    "name": "LayoutQuery",
     "selections": [
       {
         "args": [
@@ -100,7 +100,7 @@ return {
           }
         ],
         "kind": "FragmentSpread",
-        "name": "TopRepos_search"
+        "name": "Layout_search"
       }
     ],
     "type": "Query",
@@ -113,7 +113,7 @@ return {
       (v0/*: any*/)
     ],
     "kind": "Operation",
-    "name": "TopReposQuery",
+    "name": "LayoutQuery",
     "selections": [
       {
         "alias": null,
@@ -267,23 +267,23 @@ return {
           "type"
         ],
         "handle": "connection",
-        "key": "TopRepos_search",
+        "key": "Layout_search",
         "kind": "LinkedHandle",
         "name": "search"
       }
     ]
   },
   "params": {
-    "cacheID": "52b43a45b40a74a37356622ab9341c47",
+    "cacheID": "5c441b014a1c03a5e033d1b99f2b678c",
     "id": null,
     "metadata": {},
-    "name": "TopReposQuery",
+    "name": "LayoutQuery",
     "operationKind": "query",
-    "text": "query TopReposQuery(\n  $cursor: String\n  $count: Int = 10\n) {\n  ...TopRepos_search_1G22uz\n}\n\nfragment TopRepos_search_1G22uz on Query {\n  search(query: \"stars:>1000\", type: REPOSITORY, first: $count, after: $cursor) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          id\n          name\n          nameWithOwner\n          description\n          stargazerCount\n          visibility\n          primaryLanguage {\n            name\n            id\n          }\n          owner {\n            __typename\n            login\n            id\n          }\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+    "text": "query LayoutQuery(\n  $cursor: String\n  $count: Int = 10\n) {\n  ...Layout_search_1G22uz\n}\n\nfragment Layout_search_1G22uz on Query {\n  search(query: \"stars:>1000\", type: REPOSITORY, first: $count, after: $cursor) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          id\n          name\n          nameWithOwner\n          description\n          stargazerCount\n          visibility\n          primaryLanguage {\n            name\n            id\n          }\n          owner {\n            __typename\n            login\n            id\n          }\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "6e58038ce90961777330d086dfc09f98";
+(node as any).hash = "f8b1d9d80c77b63ce11ccbeda8911b69";
 
 export default node;

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<2cd1bc6853636e45962f976e3b81838d>>
+ * @generated SignedSource<<bf4426b8627b7bd302bdf8e83193086b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,47 +9,34 @@
 // @ts-nocheck
 
 import { ReaderFragment } from 'relay-runtime';
-export type RepositoryVisibility = "INTERNAL" | "PRIVATE" | "PUBLIC" | "%future added value";
 import { FragmentRefs } from "relay-runtime";
-export type TopRepos_search$data = {
+export type developers_search$data = {
   readonly search: {
     readonly edges: ReadonlyArray<{
       readonly node: {
-        readonly description?: string | null | undefined;
-        readonly id?: string;
-        readonly name?: string;
-        readonly nameWithOwner?: string;
-        readonly owner?: {
-          readonly login: string;
+        readonly bio?: string | null | undefined;
+        readonly followers?: {
+          readonly totalCount: number;
         };
-        readonly primaryLanguage?: {
-          readonly name: string;
-        } | null | undefined;
-        readonly stargazerCount?: number;
-        readonly visibility?: RepositoryVisibility;
+        readonly id?: string;
+        readonly login?: string;
+        readonly name?: string | null | undefined;
       } | null | undefined;
     } | null | undefined> | null | undefined;
   };
-  readonly " $fragmentType": "TopRepos_search";
+  readonly " $fragmentType": "developers_search";
 };
-export type TopRepos_search$key = {
-  readonly " $data"?: TopRepos_search$data;
-  readonly " $fragmentSpreads": FragmentRefs<"TopRepos_search">;
+export type developers_search$key = {
+  readonly " $data"?: developers_search$data;
+  readonly " $fragmentSpreads": FragmentRefs<"developers_search">;
 };
 
-import TopReposPaginationQuery_graphql from './TopReposPaginationQuery.graphql';
+import developersPaginationQuery_graphql from './developersPaginationQuery.graphql';
 
 const node: ReaderFragment = (function(){
 var v0 = [
   "search"
-],
-v1 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "name",
-  "storageKey": null
-};
+];
 return {
   "argumentDefinitions": [
     {
@@ -83,10 +70,10 @@ return {
         "path": (v0/*: any*/)
       },
       "fragmentPathInResult": [],
-      "operation": TopReposPaginationQuery_graphql
+      "operation": developersPaginationQuery_graphql
     }
   },
-  "name": "TopRepos_search",
+  "name": "developers_search",
   "selections": [
     {
       "alias": "search",
@@ -94,17 +81,17 @@ return {
         {
           "kind": "Literal",
           "name": "query",
-          "value": "stars:>1000"
+          "value": "followers:>1000"
         },
         {
           "kind": "Literal",
           "name": "type",
-          "value": "REPOSITORY"
+          "value": "USER"
         }
       ],
       "concreteType": "SearchResultItemConnection",
       "kind": "LinkedField",
-      "name": "__TopRepos_search_connection",
+      "name": "__developers_search_connection",
       "plural": false,
       "selections": [
         {
@@ -133,67 +120,47 @@ return {
                       "name": "id",
                       "storageKey": null
                     },
-                    (v1/*: any*/),
                     {
                       "alias": null,
                       "args": null,
                       "kind": "ScalarField",
-                      "name": "nameWithOwner",
+                      "name": "login",
                       "storageKey": null
                     },
                     {
                       "alias": null,
                       "args": null,
                       "kind": "ScalarField",
-                      "name": "description",
+                      "name": "name",
                       "storageKey": null
                     },
                     {
                       "alias": null,
                       "args": null,
                       "kind": "ScalarField",
-                      "name": "stargazerCount",
+                      "name": "bio",
                       "storageKey": null
                     },
                     {
                       "alias": null,
                       "args": null,
-                      "kind": "ScalarField",
-                      "name": "visibility",
-                      "storageKey": null
-                    },
-                    {
-                      "alias": null,
-                      "args": null,
-                      "concreteType": "Language",
+                      "concreteType": "FollowerConnection",
                       "kind": "LinkedField",
-                      "name": "primaryLanguage",
-                      "plural": false,
-                      "selections": [
-                        (v1/*: any*/)
-                      ],
-                      "storageKey": null
-                    },
-                    {
-                      "alias": null,
-                      "args": null,
-                      "concreteType": null,
-                      "kind": "LinkedField",
-                      "name": "owner",
+                      "name": "followers",
                       "plural": false,
                       "selections": [
                         {
                           "alias": null,
                           "args": null,
                           "kind": "ScalarField",
-                          "name": "login",
+                          "name": "totalCount",
                           "storageKey": null
                         }
                       ],
                       "storageKey": null
                     }
                   ],
-                  "type": "Repository",
+                  "type": "User",
                   "abstractKey": null
                 },
                 {
@@ -242,7 +209,7 @@ return {
           "storageKey": null
         }
       ],
-      "storageKey": "__TopRepos_search_connection(query:\"stars:>1000\",type:\"REPOSITORY\")"
+      "storageKey": "__developers_search_connection(query:\"followers:>1000\",type:\"USER\")"
     }
   ],
   "type": "Query",
@@ -250,6 +217,6 @@ return {
 };
 })();
 
-(node as any).hash = "dc9de31ab7f50945462cf42a1478a7c8";
+(node as any).hash = "7fad65127e6df6bd5f12bce2b6be9182";
 
 export default node;

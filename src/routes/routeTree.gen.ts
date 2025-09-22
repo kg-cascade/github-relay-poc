@@ -8,20 +8,25 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
+import { createFileRoute } from '@tanstack/react-router'
+
 import { Route as rootRouteImport } from './__root'
 import { Route as MyReposIndexRouteImport } from './my-repos/index'
-import { Route as topReposIndexRouteImport } from './(top-repos)/index'
 import { Route as UserNameIndexRouteImport } from './$userName/index'
 import { Route as RepoRepoIdRouteImport } from './repo/$repoId'
+import { Route as topReposLayoutRouteImport } from './(top-repos)/_layout'
+import { Route as topReposLayoutIndexRouteImport } from './(top-repos)/_layout/index'
+import { Route as topReposLayoutDevelopersIndexRouteImport } from './(top-repos)/_layout/developers/index'
 
+const topReposRouteImport = createFileRoute('/(top-repos)')()
+
+const topReposRoute = topReposRouteImport.update({
+  id: '/(top-repos)',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MyReposIndexRoute = MyReposIndexRouteImport.update({
   id: '/my-repos/',
   path: '/my-repos/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const topReposIndexRoute = topReposIndexRouteImport.update({
-  id: '/(top-repos)/',
-  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const UserNameIndexRoute = UserNameIndexRouteImport.update({
@@ -34,60 +39,83 @@ const RepoRepoIdRoute = RepoRepoIdRouteImport.update({
   path: '/repo/$repoId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const topReposLayoutRoute = topReposLayoutRouteImport.update({
+  id: '/_layout',
+  getParentRoute: () => topReposRoute,
+} as any)
+const topReposLayoutIndexRoute = topReposLayoutIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => topReposLayoutRoute,
+} as any)
+const topReposLayoutDevelopersIndexRoute =
+  topReposLayoutDevelopersIndexRouteImport.update({
+    id: '/developers/',
+    path: '/developers/',
+    getParentRoute: () => topReposLayoutRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof topReposLayoutIndexRoute
   '/repo/$repoId': typeof RepoRepoIdRoute
   '/$userName': typeof UserNameIndexRoute
-  '/': typeof topReposIndexRoute
   '/my-repos': typeof MyReposIndexRoute
+  '/developers': typeof topReposLayoutDevelopersIndexRoute
 }
 export interface FileRoutesByTo {
   '/repo/$repoId': typeof RepoRepoIdRoute
   '/$userName': typeof UserNameIndexRoute
-  '/': typeof topReposIndexRoute
   '/my-repos': typeof MyReposIndexRoute
+  '/': typeof topReposLayoutIndexRoute
+  '/developers': typeof topReposLayoutDevelopersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/(top-repos)': typeof topReposRouteWithChildren
+  '/(top-repos)/_layout': typeof topReposLayoutRouteWithChildren
   '/repo/$repoId': typeof RepoRepoIdRoute
   '/$userName/': typeof UserNameIndexRoute
-  '/(top-repos)/': typeof topReposIndexRoute
   '/my-repos/': typeof MyReposIndexRoute
+  '/(top-repos)/_layout/': typeof topReposLayoutIndexRoute
+  '/(top-repos)/_layout/developers/': typeof topReposLayoutDevelopersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/repo/$repoId' | '/$userName' | '/' | '/my-repos'
+  fullPaths: '/' | '/repo/$repoId' | '/$userName' | '/my-repos' | '/developers'
   fileRoutesByTo: FileRoutesByTo
-  to: '/repo/$repoId' | '/$userName' | '/' | '/my-repos'
+  to: '/repo/$repoId' | '/$userName' | '/my-repos' | '/' | '/developers'
   id:
     | '__root__'
+    | '/(top-repos)'
+    | '/(top-repos)/_layout'
     | '/repo/$repoId'
     | '/$userName/'
-    | '/(top-repos)/'
     | '/my-repos/'
+    | '/(top-repos)/_layout/'
+    | '/(top-repos)/_layout/developers/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  topReposRoute: typeof topReposRouteWithChildren
   RepoRepoIdRoute: typeof RepoRepoIdRoute
   UserNameIndexRoute: typeof UserNameIndexRoute
-  topReposIndexRoute: typeof topReposIndexRoute
   MyReposIndexRoute: typeof MyReposIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/(top-repos)': {
+      id: '/(top-repos)'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof topReposRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/my-repos/': {
       id: '/my-repos/'
       path: '/my-repos'
       fullPath: '/my-repos'
       preLoaderRoute: typeof MyReposIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(top-repos)/': {
-      id: '/(top-repos)/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof topReposIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/$userName/': {
@@ -104,13 +132,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RepoRepoIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/(top-repos)/_layout': {
+      id: '/(top-repos)/_layout'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof topReposLayoutRouteImport
+      parentRoute: typeof topReposRoute
+    }
+    '/(top-repos)/_layout/': {
+      id: '/(top-repos)/_layout/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof topReposLayoutIndexRouteImport
+      parentRoute: typeof topReposLayoutRoute
+    }
+    '/(top-repos)/_layout/developers/': {
+      id: '/(top-repos)/_layout/developers/'
+      path: '/developers'
+      fullPath: '/developers'
+      preLoaderRoute: typeof topReposLayoutDevelopersIndexRouteImport
+      parentRoute: typeof topReposLayoutRoute
+    }
   }
 }
 
+interface topReposLayoutRouteChildren {
+  topReposLayoutIndexRoute: typeof topReposLayoutIndexRoute
+  topReposLayoutDevelopersIndexRoute: typeof topReposLayoutDevelopersIndexRoute
+}
+
+const topReposLayoutRouteChildren: topReposLayoutRouteChildren = {
+  topReposLayoutIndexRoute: topReposLayoutIndexRoute,
+  topReposLayoutDevelopersIndexRoute: topReposLayoutDevelopersIndexRoute,
+}
+
+const topReposLayoutRouteWithChildren = topReposLayoutRoute._addFileChildren(
+  topReposLayoutRouteChildren,
+)
+
+interface topReposRouteChildren {
+  topReposLayoutRoute: typeof topReposLayoutRouteWithChildren
+}
+
+const topReposRouteChildren: topReposRouteChildren = {
+  topReposLayoutRoute: topReposLayoutRouteWithChildren,
+}
+
+const topReposRouteWithChildren = topReposRoute._addFileChildren(
+  topReposRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
+  topReposRoute: topReposRouteWithChildren,
   RepoRepoIdRoute: RepoRepoIdRoute,
   UserNameIndexRoute: UserNameIndexRoute,
-  topReposIndexRoute: topReposIndexRoute,
   MyReposIndexRoute: MyReposIndexRoute,
 }
 export const routeTree = rootRouteImport

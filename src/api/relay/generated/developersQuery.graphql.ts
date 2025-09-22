@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c5e3be35daf0a836eaee17c4e065967c>>
+ * @generated SignedSource<<61559cd1ce10f1d0cdba59eb2a1854f1>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,32 +10,30 @@
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type TopReposPaginationQuery$variables = {
+export type developersQuery$variables = {
   count?: number | null | undefined;
   cursor?: string | null | undefined;
 };
-export type TopReposPaginationQuery$data = {
-  readonly " $fragmentSpreads": FragmentRefs<"TopRepos_search">;
+export type developersQuery$data = {
+  readonly " $fragmentSpreads": FragmentRefs<"developers_search">;
 };
-export type TopReposPaginationQuery = {
-  response: TopReposPaginationQuery$data;
-  variables: TopReposPaginationQuery$variables;
+export type developersQuery = {
+  response: developersQuery$data;
+  variables: developersQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
-var v0 = [
-  {
-    "defaultValue": 10,
-    "kind": "LocalArgument",
-    "name": "count"
-  },
-  {
-    "defaultValue": null,
-    "kind": "LocalArgument",
-    "name": "cursor"
-  }
-],
-v1 = [
+var v0 = {
+  "defaultValue": 10,
+  "kind": "LocalArgument",
+  "name": "count"
+},
+v1 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "cursor"
+},
+v2 = [
   {
     "kind": "Variable",
     "name": "after",
@@ -49,41 +47,30 @@ v1 = [
   {
     "kind": "Literal",
     "name": "query",
-    "value": "stars:>1000"
+    "value": "followers:>1000"
   },
   {
     "kind": "Literal",
     "name": "type",
-    "value": "REPOSITORY"
+    "value": "USER"
   }
 ],
-v2 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "__typename",
-  "storageKey": null
-},
 v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
-},
-v4 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "name",
-  "storageKey": null
 };
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [
+      (v0/*: any*/),
+      (v1/*: any*/)
+    ],
     "kind": "Fragment",
     "metadata": null,
-    "name": "TopReposPaginationQuery",
+    "name": "developersQuery",
     "selections": [
       {
         "args": [
@@ -99,7 +86,7 @@ return {
           }
         ],
         "kind": "FragmentSpread",
-        "name": "TopRepos_search"
+        "name": "developers_search"
       }
     ],
     "type": "Query",
@@ -107,13 +94,16 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [
+      (v1/*: any*/),
+      (v0/*: any*/)
+    ],
     "kind": "Operation",
-    "name": "TopReposPaginationQuery",
+    "name": "developersQuery",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v2/*: any*/),
         "concreteType": "SearchResultItemConnection",
         "kind": "LinkedField",
         "name": "search",
@@ -135,75 +125,58 @@ return {
                 "name": "node",
                 "plural": false,
                 "selections": [
-                  (v2/*: any*/),
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "__typename",
+                    "storageKey": null
+                  },
                   {
                     "kind": "InlineFragment",
                     "selections": [
                       (v3/*: any*/),
-                      (v4/*: any*/),
                       {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "nameWithOwner",
+                        "name": "login",
                         "storageKey": null
                       },
                       {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "description",
+                        "name": "name",
                         "storageKey": null
                       },
                       {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "stargazerCount",
+                        "name": "bio",
                         "storageKey": null
                       },
                       {
                         "alias": null,
                         "args": null,
-                        "kind": "ScalarField",
-                        "name": "visibility",
-                        "storageKey": null
-                      },
-                      {
-                        "alias": null,
-                        "args": null,
-                        "concreteType": "Language",
+                        "concreteType": "FollowerConnection",
                         "kind": "LinkedField",
-                        "name": "primaryLanguage",
+                        "name": "followers",
                         "plural": false,
                         "selections": [
-                          (v4/*: any*/),
-                          (v3/*: any*/)
-                        ],
-                        "storageKey": null
-                      },
-                      {
-                        "alias": null,
-                        "args": null,
-                        "concreteType": null,
-                        "kind": "LinkedField",
-                        "name": "owner",
-                        "plural": false,
-                        "selections": [
-                          (v2/*: any*/),
                           {
                             "alias": null,
                             "args": null,
                             "kind": "ScalarField",
-                            "name": "login",
+                            "name": "totalCount",
                             "storageKey": null
-                          },
-                          (v3/*: any*/)
+                          }
                         ],
                         "storageKey": null
                       }
                     ],
-                    "type": "Repository",
+                    "type": "User",
                     "abstractKey": null
                   },
                   {
@@ -257,29 +230,29 @@ return {
       },
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v2/*: any*/),
         "filters": [
           "query",
           "type"
         ],
         "handle": "connection",
-        "key": "TopRepos_search",
+        "key": "developers_search",
         "kind": "LinkedHandle",
         "name": "search"
       }
     ]
   },
   "params": {
-    "cacheID": "4da4f4af3e34a793d9f904e480e14407",
+    "cacheID": "b51daad69f56cb3b4301e0e60fff38a2",
     "id": null,
     "metadata": {},
-    "name": "TopReposPaginationQuery",
+    "name": "developersQuery",
     "operationKind": "query",
-    "text": "query TopReposPaginationQuery(\n  $count: Int = 10\n  $cursor: String\n) {\n  ...TopRepos_search_1G22uz\n}\n\nfragment TopRepos_search_1G22uz on Query {\n  search(query: \"stars:>1000\", type: REPOSITORY, first: $count, after: $cursor) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          id\n          name\n          nameWithOwner\n          description\n          stargazerCount\n          visibility\n          primaryLanguage {\n            name\n            id\n          }\n          owner {\n            __typename\n            login\n            id\n          }\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+    "text": "query developersQuery(\n  $cursor: String\n  $count: Int = 10\n) {\n  ...developers_search_1G22uz\n}\n\nfragment developers_search_1G22uz on Query {\n  search(query: \"followers:>1000\", type: USER, first: $count, after: $cursor) {\n    edges {\n      node {\n        __typename\n        ... on User {\n          id\n          login\n          name\n          bio\n          followers {\n            totalCount\n          }\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "dc9de31ab7f50945462cf42a1478a7c8";
+(node as any).hash = "3284ea7173138d29c6525196bb72512c";
 
 export default node;

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<230f100d208ed7a17d11876fd357228a>>
+ * @generated SignedSource<<968b8fdb5fc42174b52c25987e857aef>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,17 +10,17 @@
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type TopReposAuthorHoverCardQuery$variables = {
+export type LayoutAuthorHoverCardQuery$variables = {
   login: string;
 };
-export type TopReposAuthorHoverCardQuery$data = {
+export type LayoutAuthorHoverCardQuery$data = {
   readonly user: {
     readonly " $fragmentSpreads": FragmentRefs<"AuthorHoverCardContent_AuthorDetailsFragment">;
   } | null | undefined;
 };
-export type TopReposAuthorHoverCardQuery = {
-  response: TopReposAuthorHoverCardQuery$data;
-  variables: TopReposAuthorHoverCardQuery$variables;
+export type LayoutAuthorHoverCardQuery = {
+  response: LayoutAuthorHoverCardQuery$data;
+  variables: LayoutAuthorHoverCardQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -43,7 +43,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "TopReposAuthorHoverCardQuery",
+    "name": "LayoutAuthorHoverCardQuery",
     "selections": [
       {
         "alias": null,
@@ -69,7 +69,7 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "TopReposAuthorHoverCardQuery",
+    "name": "LayoutAuthorHoverCardQuery",
     "selections": [
       {
         "alias": null,
@@ -197,16 +197,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "d4ddccb765b7ffba0bd242388ab25cda",
+    "cacheID": "a709ecedd1abf3846f53dabc604a7ce3",
     "id": null,
     "metadata": {},
-    "name": "TopReposAuthorHoverCardQuery",
+    "name": "LayoutAuthorHoverCardQuery",
     "operationKind": "query",
-    "text": "query TopReposAuthorHoverCardQuery(\n  $login: String!\n) {\n  user(login: $login) {\n    ...AuthorHoverCardContent_AuthorDetailsFragment\n    id\n  }\n}\n\nfragment AuthorHoverCardContent_AuthorDetailsFragment on User {\n  id\n  login\n  name\n  avatarUrl\n  bio\n  company\n  location\n  email\n  createdAt\n  updatedAt\n  isHireable\n  isEmployee\n  isGitHubStar\n  twitterUsername\n  websiteUrl\n  pronouns\n}\n"
+    "text": "query LayoutAuthorHoverCardQuery(\n  $login: String!\n) {\n  user(login: $login) {\n    ...AuthorHoverCardContent_AuthorDetailsFragment\n    id\n  }\n}\n\nfragment AuthorHoverCardContent_AuthorDetailsFragment on User {\n  id\n  login\n  name\n  avatarUrl\n  bio\n  company\n  location\n  email\n  createdAt\n  updatedAt\n  isHireable\n  isEmployee\n  isGitHubStar\n  twitterUsername\n  websiteUrl\n  pronouns\n}\n"
   }
 };
 })();
 
-(node as any).hash = "809875ebeeaf3977a2da9ee98211748e";
+(node as any).hash = "0451df3eecc1537f408c29e99488c34b";
 
 export default node;
