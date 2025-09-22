@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ca294a7c7b04c4d1791de28ced6f01a7>>
+ * @generated SignedSource<<0c16aafa4a053c404b96c37512649551>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -26,7 +26,7 @@ export type UserNameQuery$data = {
     readonly name: string | null | undefined;
     readonly url: any;
     readonly websiteUrl: any | null | undefined;
-    readonly " $fragmentSpreads": FragmentRefs<"OrganizationsList_user" | "TopUserRepo_user">;
+    readonly " $fragmentSpreads": FragmentRefs<"ContributionHeatmap_user" | "OrganizationsList_user" | "TopUserRepo_user">;
   } | null | undefined;
 };
 export type UserNameQuery = {
@@ -161,6 +161,11 @@ return {
             "args": null,
             "kind": "FragmentSpread",
             "name": "TopUserRepo_user"
+          },
+          {
+            "args": null,
+            "kind": "FragmentSpread",
+            "name": "ContributionHeatmap_user"
           }
         ],
         "storageKey": null
@@ -290,6 +295,85 @@ return {
               }
             ],
             "storageKey": "topRepositories(first:5,orderBy:{\"direction\":\"DESC\",\"field\":\"STARGAZERS\"})"
+          },
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "ContributionsCollection",
+            "kind": "LinkedField",
+            "name": "contributionsCollection",
+            "plural": false,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "ContributionCalendar",
+                "kind": "LinkedField",
+                "name": "contributionCalendar",
+                "plural": false,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "totalContributions",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "ContributionCalendarWeek",
+                    "kind": "LinkedField",
+                    "name": "weeks",
+                    "plural": true,
+                    "selections": [
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "ContributionCalendarDay",
+                        "kind": "LinkedField",
+                        "name": "contributionDays",
+                        "plural": true,
+                        "selections": [
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "contributionCount",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "date",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "weekday",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "color",
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": null
+                      }
+                    ],
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
           }
         ],
         "storageKey": null
@@ -297,16 +381,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "e9e7b70413000b39184a1b0f60894130",
+    "cacheID": "baf9a12902fe225b9f59275cff838a6c",
     "id": null,
     "metadata": {},
     "name": "UserNameQuery",
     "operationKind": "query",
-    "text": "query UserNameQuery(\n  $userName: String!\n) {\n  user(login: $userName) {\n    id\n    login\n    name\n    avatarUrl\n    createdAt\n    bio\n    company\n    location\n    url\n    websiteUrl\n    email\n    ...OrganizationsList_user\n    ...TopUserRepo_user\n  }\n}\n\nfragment OrganizationsList_user on User {\n  id\n  login\n  organizations(first: 10) {\n    nodes {\n      id\n      name\n      url\n      avatarUrl\n    }\n  }\n}\n\nfragment TopUserRepo_user on User {\n  topRepositories(first: 5, orderBy: {field: STARGAZERS, direction: DESC}) {\n    nodes {\n      name\n      visibility\n      stargazerCount\n      primaryLanguage {\n        name\n        id\n      }\n      id\n    }\n  }\n}\n"
+    "text": "query UserNameQuery(\n  $userName: String!\n) {\n  user(login: $userName) {\n    id\n    login\n    name\n    avatarUrl\n    createdAt\n    bio\n    company\n    location\n    url\n    websiteUrl\n    email\n    ...OrganizationsList_user\n    ...TopUserRepo_user\n    ...ContributionHeatmap_user\n  }\n}\n\nfragment ContributionHeatmap_user on User {\n  contributionsCollection {\n    contributionCalendar {\n      totalContributions\n      weeks {\n        contributionDays {\n          contributionCount\n          date\n          weekday\n          color\n        }\n      }\n    }\n  }\n}\n\nfragment OrganizationsList_user on User {\n  id\n  login\n  organizations(first: 10) {\n    nodes {\n      id\n      name\n      url\n      avatarUrl\n    }\n  }\n}\n\nfragment TopUserRepo_user on User {\n  topRepositories(first: 5, orderBy: {field: STARGAZERS, direction: DESC}) {\n    nodes {\n      name\n      visibility\n      stargazerCount\n      primaryLanguage {\n        name\n        id\n      }\n      id\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "7535fecfbca1677bf896bd60d42a7909";
+(node as any).hash = "2f84b762d2da235bc7a5c7d797552f2f";
 
 export default node;

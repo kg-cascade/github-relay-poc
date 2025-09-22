@@ -5,7 +5,7 @@ import { cn } from '@/shared/utils/cn';
 import { createRootRoute, Outlet, useLoaderData } from '@tanstack/react-router';
 import {
   BookLock,
-  CalendarDays,
+  // CalendarDays,
   Menu as MenuIcon,
   Star,
   type LucideIcon,
@@ -39,13 +39,13 @@ type NavigationItem = {
 const navigation: NavigationItem[] = [
   { name: 'Top Repos', href: '/', icon: Star, count: '5', current: true },
   { name: 'My Repos', href: '/my-repos', icon: BookLock, current: false },
-  {
-    name: 'Calendar',
-    href: '/',
-    icon: CalendarDays,
-    count: '12',
-    current: false,
-  },
+  // {
+  //   name: 'Calendar',
+  //   href: '/',
+  //   icon: CalendarDays,
+  //   count: '12',
+  //   current: false,
+  // },
 ];
 
 const teams = [

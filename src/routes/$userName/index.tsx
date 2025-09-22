@@ -12,6 +12,7 @@ import {
 import { type Environment as RelayEnvironmentType } from 'relay-runtime';
 import OrganizationsList from './-components/Organizations';
 import TopUserRepo from './-components/TopUserRepo';
+import ContributionHeatmap from './-components/ContributionHeatmap';
 
 const UserQuery = graphql`
   query UserNameQuery($userName: String!) {
@@ -29,6 +30,7 @@ const UserQuery = graphql`
       email
       ...OrganizationsList_user
       ...TopUserRepo_user
+      ...ContributionHeatmap_user
     }
   }
 `;
@@ -98,6 +100,9 @@ function UserProfile() {
           View on GitHub
         </a>
         <TopUserRepo user={user} />
+        <div className="mt-8">
+          <ContributionHeatmap user={user} />
+        </div>
       </div>
     </div>
   );
