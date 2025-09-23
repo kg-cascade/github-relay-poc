@@ -12,6 +12,7 @@ import { useInView } from '@/shared/hooks/useInView';
 import { createFileRoute } from '@tanstack/react-router'; // Keep createFileRoute
 import { type ColumnDef, type Row } from '@tanstack/react-table';
 import { Suspense, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   graphql,
   useLazyLoadQuery,
@@ -173,6 +174,7 @@ function TopRepositories(props: { query: Layout_search$key }) {
   ];
 
   const { ref } = useInView<HTMLDivElement>();
+  const { t } = useTranslation();
 
   return (
     <div className="p-2" ref={ref}>
@@ -180,6 +182,7 @@ function TopRepositories(props: { query: Layout_search$key }) {
       <h1 className="text-xl font-semibold mb-2">
         Top Repositories (by stars)
       </h1>
+      <h1>{t('Welcome to React')}</h1>
       <Suspense
         fallback={
           <div className="flex justify-center items-center h-96">

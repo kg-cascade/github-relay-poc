@@ -3,10 +3,11 @@ import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import { RelayEnvironmentProvider } from 'react-relay';
 
+import '@/i18n';
 import { createRouter, RouterProvider } from '@tanstack/react-router';
+import { type Environment as RelayEnvironmentType } from 'relay-runtime';
 import { RelayEnvironment } from './api/relay/RelayEnvironment';
 import { routeTree } from './routes/routeTree.gen';
-import { type Environment as RelayEnvironmentType } from 'relay-runtime';
 
 document.documentElement.classList.add('dark');
 

@@ -130,13 +130,13 @@ export default function RootLayout() {
                   ))}
                 </ul>
               </li>
+              <li>
+                <Settings />
+              </li>
               <li className="-mx-6 mt-auto">
                 <Suspense fallback={<LoggedUserSkeleton />}>
                   <LoggedUser user={data.viewer} />
                 </Suspense>
-              </li>
-              <li>
-                <Settings />
               </li>
             </ul>
           </nav>

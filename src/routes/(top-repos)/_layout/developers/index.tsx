@@ -119,7 +119,6 @@ function TopDevelopers(props: { query: developers_search$key }) {
 
   return (
     <div className="p-2" ref={ref}>
-      {' '}
       <h1 className="text-xl font-semibold mb-2">
         Top Developers (by followers)
       </h1>

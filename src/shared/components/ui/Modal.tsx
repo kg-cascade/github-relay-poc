@@ -29,6 +29,7 @@ export const Modal = (props: ModalProps) => {
               <Button
                 variant="secondary"
                 onClick={() => props.onOpenChange(false)}
+                className="mt-6"
               >
                 Close
               </Button>
