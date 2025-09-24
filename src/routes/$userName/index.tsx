@@ -17,7 +17,7 @@ import ContributionHeatmap from './-components/ContributionHeatmap';
 const UserQuery = graphql`
   query UserNameQuery($userName: String!) {
     user(login: $userName) {
-      id
+      # id
       login
       name
       avatarUrl
@@ -26,8 +26,8 @@ const UserQuery = graphql`
       company
       location
       url
-      websiteUrl
-      email
+      # websiteUrl
+      # email
       ...OrganizationsList_user
       ...TopUserRepo_user
       ...ContributionHeatmap_user
@@ -73,18 +73,18 @@ function UserProfile() {
   console.log('USER', user);
 
   return (
-    <div className="flex gap-6 ">
-      <div className="flex flex-col gap-4 w-1/3">
+    <div className="flex gap-6">
+      <div className="flex w-1/3 flex-col gap-4">
         <img
           src={user.avatarUrl}
           alt={`${user.login} avatar`}
-          className="w-32 h-32 rounded-full mb-4"
+          className="mb-4 h-32 w-32 rounded-full"
         />
         <h1 className="text-3xl font-bold">{user.name || user.login}</h1>
         {user.bio && <p className="text-gray-500">{user.bio}</p>}
         {user.location && <p className="mt-2">Location: {user.location}</p>}
         {user.company && <p className="mt-2">Company: {user.company}</p>}
-        <div className="flex gap-2 items-center">
+        <div className="flex items-center gap-2">
           <Rocket height={24} width={24} />
           Joined {new Date(user.createdAt).toLocaleDateString()}
         </div>
@@ -95,7 +95,7 @@ function UserProfile() {
           href={user.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-500 hover:underline mt-4"
+          className="mt-4 text-blue-500 hover:underline"
         >
           View on GitHub
         </a>

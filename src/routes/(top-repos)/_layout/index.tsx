@@ -12,7 +12,6 @@ import { useInView } from '@/shared/hooks/useInView';
 import { createFileRoute } from '@tanstack/react-router'; // Keep createFileRoute
 import { type ColumnDef, type Row } from '@tanstack/react-table';
 import { Suspense, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   graphql,
   useLazyLoadQuery,
@@ -101,8 +100,8 @@ function TopRepositories(props: { query: Layout_search$key }) {
                 name
                 nameWithOwner
                 description
-                stargazerCount
-                visibility
+                # stargazerCount
+                # visibility
                 primaryLanguage {
                   name
                 }
@@ -174,18 +173,16 @@ function TopRepositories(props: { query: Layout_search$key }) {
   ];
 
   const { ref } = useInView<HTMLDivElement>();
-  const { t } = useTranslation();
 
   return (
     <div className="p-2" ref={ref}>
       {' '}
-      <h1 className="text-xl font-semibold mb-2">
+      <h1 className="mb-2 text-xl font-semibold">
         Top Repositories (by stars)
       </h1>
-      <h1>{t('Welcome to React')}</h1>
       <Suspense
         fallback={
-          <div className="flex justify-center items-center h-96">
+          <div className="flex h-96 items-center justify-center">
             <Spinner size="large" />
           </div>
         }
@@ -206,7 +203,7 @@ function TopRepositories(props: { query: Layout_search$key }) {
           <p>No repositories found.</p>
         )}
         {hasNext && (
-          <div className="flex justify-center mt-4">
+          <div className="mt-4 flex justify-center">
             <Button
               size={'small'}
               onClick={() => loadNext(10)}

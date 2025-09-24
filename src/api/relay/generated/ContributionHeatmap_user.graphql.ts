@@ -9,7 +9,7 @@
 // @ts-nocheck
 
 import { ReaderFragment } from 'relay-runtime';
-import { FragmentRefs } from "relay-runtime";
+import { FragmentRefs } from 'relay-runtime';
 export type ContributionHeatmap_user$data = {
   readonly contributionsCollection: {
     readonly contributionCalendar: {
@@ -24,103 +24,103 @@ export type ContributionHeatmap_user$data = {
       }>;
     };
   };
-  readonly " $fragmentType": "ContributionHeatmap_user";
+  readonly ' $fragmentType': 'ContributionHeatmap_user';
 };
 export type ContributionHeatmap_user$key = {
-  readonly " $data"?: ContributionHeatmap_user$data;
-  readonly " $fragmentSpreads": FragmentRefs<"ContributionHeatmap_user">;
+  readonly ' $data'?: ContributionHeatmap_user$data;
+  readonly ' $fragmentSpreads': FragmentRefs<'ContributionHeatmap_user'>;
 };
 
 const node: ReaderFragment = {
-  "argumentDefinitions": [],
-  "kind": "Fragment",
-  "metadata": null,
-  "name": "ContributionHeatmap_user",
-  "selections": [
+  argumentDefinitions: [],
+  kind: 'Fragment',
+  metadata: null,
+  name: 'ContributionHeatmap_user',
+  selections: [
     {
-      "alias": null,
-      "args": null,
-      "concreteType": "ContributionsCollection",
-      "kind": "LinkedField",
-      "name": "contributionsCollection",
-      "plural": false,
-      "selections": [
+      alias: null,
+      args: null,
+      concreteType: 'ContributionsCollection',
+      kind: 'LinkedField',
+      name: 'contributionsCollection',
+      plural: false,
+      selections: [
         {
-          "alias": null,
-          "args": null,
-          "concreteType": "ContributionCalendar",
-          "kind": "LinkedField",
-          "name": "contributionCalendar",
-          "plural": false,
-          "selections": [
+          alias: null,
+          args: null,
+          concreteType: 'ContributionCalendar',
+          kind: 'LinkedField',
+          name: 'contributionCalendar',
+          plural: false,
+          selections: [
             {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
-              "name": "totalContributions",
-              "storageKey": null
+              alias: null,
+              args: null,
+              kind: 'ScalarField',
+              name: 'totalContributions',
+              storageKey: null,
             },
             {
-              "alias": null,
-              "args": null,
-              "concreteType": "ContributionCalendarWeek",
-              "kind": "LinkedField",
-              "name": "weeks",
-              "plural": true,
-              "selections": [
+              alias: null,
+              args: null,
+              concreteType: 'ContributionCalendarWeek',
+              kind: 'LinkedField',
+              name: 'weeks',
+              plural: true,
+              selections: [
                 {
-                  "alias": null,
-                  "args": null,
-                  "concreteType": "ContributionCalendarDay",
-                  "kind": "LinkedField",
-                  "name": "contributionDays",
-                  "plural": true,
-                  "selections": [
+                  alias: null,
+                  args: null,
+                  concreteType: 'ContributionCalendarDay',
+                  kind: 'LinkedField',
+                  name: 'contributionDays',
+                  plural: true,
+                  selections: [
                     {
-                      "alias": null,
-                      "args": null,
-                      "kind": "ScalarField",
-                      "name": "contributionCount",
-                      "storageKey": null
+                      alias: null,
+                      args: null,
+                      kind: 'ScalarField',
+                      name: 'contributionCount',
+                      storageKey: null,
                     },
                     {
-                      "alias": null,
-                      "args": null,
-                      "kind": "ScalarField",
-                      "name": "date",
-                      "storageKey": null
+                      alias: null,
+                      args: null,
+                      kind: 'ScalarField',
+                      name: 'date',
+                      storageKey: null,
                     },
                     {
-                      "alias": null,
-                      "args": null,
-                      "kind": "ScalarField",
-                      "name": "weekday",
-                      "storageKey": null
+                      alias: null,
+                      args: null,
+                      kind: 'ScalarField',
+                      name: 'weekday',
+                      storageKey: null,
                     },
                     {
-                      "alias": null,
-                      "args": null,
-                      "kind": "ScalarField",
-                      "name": "color",
-                      "storageKey": null
-                    }
+                      alias: null,
+                      args: null,
+                      kind: 'ScalarField',
+                      name: 'color',
+                      storageKey: null,
+                    },
                   ],
-                  "storageKey": null
-                }
+                  storageKey: null,
+                },
               ],
-              "storageKey": null
-            }
+              storageKey: null,
+            },
           ],
-          "storageKey": null
-        }
+          storageKey: null,
+        },
       ],
-      "storageKey": null
-    }
+      storageKey: null,
+    },
   ],
-  "type": "User",
-  "abstractKey": null
+  type: 'User',
+  abstractKey: null,
 };
 
-(node as any).hash = "caaadfa6d095e30fc1d3be874dbb297e";
+(node as any).hash = 'caaadfa6d095e30fc1d3be874dbb297e';
 
 export default node;

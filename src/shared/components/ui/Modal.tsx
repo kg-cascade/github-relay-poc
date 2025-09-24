@@ -16,11 +16,11 @@ export const Modal = (props: ModalProps) => {
       onOpenChange={(e) => props.onOpenChange(e.open)}
     >
       <Portal>
-        <DialogArk.Backdrop className="fixed inset-0 bg-black/50 w-svw z-100" />
+        <DialogArk.Backdrop className="fixed inset-0 z-100 w-svw bg-black/50" />
         <DialogArk.Positioner className="fixed inset-0 z-110 flex items-center justify-center">
-          <DialogArk.Content className="w-screen max-w-sm flex-auto  rounded-3xl bg-white dark:bg-gray-800 p-4 outline-1 -outline-offset-1 dark:outline-white/10 outline-gray-900/5">
+          <DialogArk.Content className="w-screen max-w-sm flex-auto rounded-3xl bg-white p-4 outline-1 -outline-offset-1 outline-gray-900/5 dark:bg-gray-800 dark:outline-white/10">
             {props.title && (
-              <DialogArk.Title className="text-lg font-semibold mb-4">
+              <DialogArk.Title className="mb-4 text-lg font-semibold">
                 {props.title}
               </DialogArk.Title>
             )}

@@ -11,7 +11,7 @@ const contributionHeatmapFragment = graphql`
           contributionDays {
             contributionCount
             date
-            weekday
+            # weekday
             color
           }
         }
@@ -36,14 +36,14 @@ const ContributionHeatmap = ({
 
   return (
     <div className="flex flex-col items-center">
-      <h2 className="text-xl font-semibold mb-4">
+      <h2 className="mb-4 text-xl font-semibold">
         {contributionCalendar.totalContributions} contributions in the last year
       </h2>
       <div className="flex justify-center">
         <div className="flex flex-row gap-3">
           <div className="flex flex-col gap-1 text-xs text-gray-500">
             {displayDayLabels.map((label, i) => (
-              <div key={i} className="w-4 h-4 flex items-center">
+              <div key={i} className="flex h-4 w-4 items-center">
                 {label}
               </div>
             ))}
@@ -62,14 +62,14 @@ const ContributionHeatmap = ({
                       }
                     >
                       <div
-                        className="w-4 h-4 rounded-sm"
+                        className="h-4 w-4 rounded-sm"
                         style={{ backgroundColor: day.color }}
                       />
                     </HoverCard>
                   ) : (
                     <div
                       key={`${weekIndex}_empty_${dayIndex}`}
-                      className="w-4 h-4 rounded-sm bg-transparent"
+                      className="h-4 w-4 rounded-sm bg-transparent"
                     />
                   )
                 )}

@@ -130,7 +130,7 @@ function MyReposComponent() {
 
   return (
     <div className="h-screen" ref={animationRef}>
-      <h3 className="text-test text-2xl font-bold mb-4">My Repositories</h3>
+      <h3 className="text-test mb-4 text-2xl font-bold">My Repositories</h3>
       {repositories.length > 0 ? (
         <Table columns={columns} data={repositories} />
       ) : (

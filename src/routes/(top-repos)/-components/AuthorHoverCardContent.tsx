@@ -18,14 +18,14 @@ const AuthorHoverCardContent_AuthorDetailsFragment = graphql`
     company
     location
     email
-    createdAt
-    updatedAt
-    isHireable
-    isEmployee
-    isGitHubStar
+    # createdAt
+    # updatedAt
+    # isHireable
+    # isEmployee
+    # isGitHubStar
     twitterUsername
     websiteUrl
-    pronouns
+    # pronouns
   }
 `;
 
@@ -57,12 +57,12 @@ const AuthorHoverCardContent: React.FC<AuthorHoverCardContentProps> = ({
   }
 
   return (
-    <div className="flex flex-col p-3 gap-2 border rounded-lg bg-background text-text w-64">
+    <div className="bg-background text-text flex w-64 flex-col gap-2 rounded-lg border p-3">
       <div className="flex items-center gap-3">
         <img
           src={user.avatarUrl || ''}
           alt={user.login}
-          className="w-12 h-12 rounded-full"
+          className="h-12 w-12 rounded-full"
         />
         <div>
           <p className="font-bold">{user.name || user.login}</p>
@@ -72,7 +72,7 @@ const AuthorHoverCardContent: React.FC<AuthorHoverCardContentProps> = ({
 
       {user.bio && <p className="text-sm">{user.bio}</p>}
 
-      <div className="text-xs text-gray-400 space-y-1">
+      <div className="space-y-1 text-xs text-gray-400">
         {user.company && <p>🏢 {user.company}</p>}
         {user.location && <p>📍 {user.location}</p>}
         {user.email && <p>✉️ {user.email}</p>}

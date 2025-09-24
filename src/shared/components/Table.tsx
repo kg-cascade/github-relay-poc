@@ -20,14 +20,14 @@ const Table = <TData, TValue>({ columns, data }: TableProps<TData, TValue>) => {
 
   return (
     <Card>
-      <table className=" min-w-full text-text  overflow-hidden ">
+      <table className="text-text min-w-full overflow-hidden">
         <thead className="text-text">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
                 <th
                   key={header.id}
-                  className="py-3 px-4 text-left font-semibold border-b border-border"
+                  className="border-border border-b px-4 py-3 text-left font-semibold"
                 >
                   {header.isPlaceholder
                     ? null
@@ -44,10 +44,10 @@ const Table = <TData, TValue>({ columns, data }: TableProps<TData, TValue>) => {
           {table.getRowModel().rows.map((row) => (
             <tr
               key={row.id}
-              className="border-b border-border hover:bg-primary/50 hover:cursor-pointer hover:text-secondary-foreground transition-colors"
+              className="border-border hover:bg-primary/50 hover:text-secondary-foreground border-b transition-colors hover:cursor-pointer"
             >
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="py-2 px-4">
+                <td key={cell.id} className="px-4 py-2">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}

@@ -119,12 +119,12 @@ function TopDevelopers(props: { query: developers_search$key }) {
 
   return (
     <div className="p-2" ref={ref}>
-      <h1 className="text-xl font-semibold mb-2">
+      <h1 className="mb-2 text-xl font-semibold">
         Top Developers (by followers)
       </h1>
       <Suspense
         fallback={
-          <div className="flex justify-center items-center h-96">
+          <div className="flex h-96 items-center justify-center">
             <Spinner size="large" />
           </div>
         }
@@ -145,7 +145,7 @@ function TopDevelopers(props: { query: developers_search$key }) {
           <p>No developers found.</p>
         )}
         {hasNext && (
-          <div className="flex justify-center mt-4">
+          <div className="mt-4 flex justify-center">
             <Button
               size={'small'}
               onClick={() => loadNext(10)}

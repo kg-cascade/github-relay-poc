@@ -66,7 +66,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         className={cn(
           buttonVariants({ variant, size, shape, iconPosition }),
-          onlyIcon && 'justify-center items-center',
+          onlyIcon && 'items-center justify-center',
           onlyIcon && size === 'small' && 'p-2 text-xs',
           onlyIcon && size === 'normal' && 'p-3 text-sm',
           onlyIcon && size === 'large' && 'p-4 text-lg',
@@ -74,7 +74,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         {...props}
       >
-        {Icon && <Icon className={onlyIcon ? 'h-4 w-4 m-0' : 'mr-2 h-4 w-4'} />}
+        {Icon && <Icon className={onlyIcon ? 'm-0 h-4 w-4' : 'mr-2 h-4 w-4'} />}
         {children}
       </button>
     );

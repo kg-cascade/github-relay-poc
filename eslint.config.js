@@ -1,6 +1,6 @@
 import js from '@eslint/js';
-
 import pluginReact from 'eslint-plugin-react';
+import pluginRelay from 'eslint-plugin-relay';
 import { defineConfig } from 'eslint/config';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
@@ -11,10 +11,16 @@ export default defineConfig([
   },
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-    plugins: { js },
+    plugins: {
+      js,
+      relay: pluginRelay, // adding Relay plugin
+    },
     extends: ['js/recommended'],
     languageOptions: {
       globals: globals.browser,
+    },
+    rules: {
+      ...pluginRelay.configs.recommended.rules, // recommended rules from eslint-plugin-relay
     },
   },
   tseslint.configs.recommended,
@@ -30,5 +36,4 @@ export default defineConfig([
       'react/prop-types': 'off',
     },
   },
-  
 ]);

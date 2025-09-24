@@ -43,11 +43,11 @@
 
 @layer base {
   html {
-    @apply m-0 p-0 h-full;
+    @apply m-0 h-full p-0;
   }
 
   body {
-    @apply bg-white text-gray-900 font-sans leading-relaxed antialiased w-full h-full;
+    @apply h-full w-full bg-white font-sans leading-relaxed text-gray-900 antialiased;
   }
 
   .dark body {
@@ -55,6 +55,6 @@
   }
 
   .lucide {
-    @apply w-[16px] h-[16px] stroke-2;
+    @apply h-[16px] w-[16px] stroke-2;
   }
 }

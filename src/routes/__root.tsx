@@ -7,6 +7,7 @@ import {
   BookLock,
   // CalendarDays,
   Menu as MenuIcon,
+  BookA,
   Star,
   type LucideIcon,
 } from 'lucide-react';
@@ -39,6 +40,12 @@ type NavigationItem = {
 const navigation: NavigationItem[] = [
   { name: 'Top Repos', href: '/', icon: Star, count: '5', current: true },
   { name: 'My Repos', href: '/my-repos', icon: BookLock, current: false },
+  {
+    name: 'Translations',
+    href: '/translations',
+    icon: BookA,
+    current: false,
+  },
   // {
   //   name: 'Calendar',
   //   href: '/',
@@ -64,7 +71,7 @@ const RootQuery = graphql`
   query RootQuery {
     viewer {
       ...LoggedUser_user
-      id
+      # id
     }
   }
 `;
@@ -91,7 +98,7 @@ export default function RootLayout() {
           <nav className="flex flex-1 flex-col">
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
               <li>
-                <ul role="list" className="-mx-2 space-y-1 flex flex-col">
+                <ul role="list" className="-mx-2 flex flex-col space-y-1">
                   {navigation.map((item) => (
                     <NavLink
                       key={item.name}

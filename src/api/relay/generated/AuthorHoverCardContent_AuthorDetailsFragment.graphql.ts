@@ -9,7 +9,7 @@
 // @ts-nocheck
 
 import { ReaderFragment } from 'relay-runtime';
-import { FragmentRefs } from "relay-runtime";
+import { FragmentRefs } from 'relay-runtime';
 export type AuthorHoverCardContent_AuthorDetailsFragment$data = {
   readonly avatarUrl: any;
   readonly bio: string | null | undefined;
@@ -27,136 +27,136 @@ export type AuthorHoverCardContent_AuthorDetailsFragment$data = {
   readonly twitterUsername: string | null | undefined;
   readonly updatedAt: any;
   readonly websiteUrl: any | null | undefined;
-  readonly " $fragmentType": "AuthorHoverCardContent_AuthorDetailsFragment";
+  readonly ' $fragmentType': 'AuthorHoverCardContent_AuthorDetailsFragment';
 };
 export type AuthorHoverCardContent_AuthorDetailsFragment$key = {
-  readonly " $data"?: AuthorHoverCardContent_AuthorDetailsFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"AuthorHoverCardContent_AuthorDetailsFragment">;
+  readonly ' $data'?: AuthorHoverCardContent_AuthorDetailsFragment$data;
+  readonly ' $fragmentSpreads': FragmentRefs<'AuthorHoverCardContent_AuthorDetailsFragment'>;
 };
 
 const node: ReaderFragment = {
-  "argumentDefinitions": [],
-  "kind": "Fragment",
-  "metadata": null,
-  "name": "AuthorHoverCardContent_AuthorDetailsFragment",
-  "selections": [
+  argumentDefinitions: [],
+  kind: 'Fragment',
+  metadata: null,
+  name: 'AuthorHoverCardContent_AuthorDetailsFragment',
+  selections: [
     {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "id",
-      "storageKey": null
+      alias: null,
+      args: null,
+      kind: 'ScalarField',
+      name: 'id',
+      storageKey: null,
     },
     {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "login",
-      "storageKey": null
+      alias: null,
+      args: null,
+      kind: 'ScalarField',
+      name: 'login',
+      storageKey: null,
     },
     {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "name",
-      "storageKey": null
+      alias: null,
+      args: null,
+      kind: 'ScalarField',
+      name: 'name',
+      storageKey: null,
     },
     {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "avatarUrl",
-      "storageKey": null
+      alias: null,
+      args: null,
+      kind: 'ScalarField',
+      name: 'avatarUrl',
+      storageKey: null,
     },
     {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "bio",
-      "storageKey": null
+      alias: null,
+      args: null,
+      kind: 'ScalarField',
+      name: 'bio',
+      storageKey: null,
     },
     {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "company",
-      "storageKey": null
+      alias: null,
+      args: null,
+      kind: 'ScalarField',
+      name: 'company',
+      storageKey: null,
     },
     {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "location",
-      "storageKey": null
+      alias: null,
+      args: null,
+      kind: 'ScalarField',
+      name: 'location',
+      storageKey: null,
     },
     {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "email",
-      "storageKey": null
+      alias: null,
+      args: null,
+      kind: 'ScalarField',
+      name: 'email',
+      storageKey: null,
     },
     {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "createdAt",
-      "storageKey": null
+      alias: null,
+      args: null,
+      kind: 'ScalarField',
+      name: 'createdAt',
+      storageKey: null,
     },
     {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "updatedAt",
-      "storageKey": null
+      alias: null,
+      args: null,
+      kind: 'ScalarField',
+      name: 'updatedAt',
+      storageKey: null,
     },
     {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "isHireable",
-      "storageKey": null
+      alias: null,
+      args: null,
+      kind: 'ScalarField',
+      name: 'isHireable',
+      storageKey: null,
     },
     {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "isEmployee",
-      "storageKey": null
+      alias: null,
+      args: null,
+      kind: 'ScalarField',
+      name: 'isEmployee',
+      storageKey: null,
     },
     {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "isGitHubStar",
-      "storageKey": null
+      alias: null,
+      args: null,
+      kind: 'ScalarField',
+      name: 'isGitHubStar',
+      storageKey: null,
     },
     {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "twitterUsername",
-      "storageKey": null
+      alias: null,
+      args: null,
+      kind: 'ScalarField',
+      name: 'twitterUsername',
+      storageKey: null,
     },
     {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "websiteUrl",
-      "storageKey": null
+      alias: null,
+      args: null,
+      kind: 'ScalarField',
+      name: 'websiteUrl',
+      storageKey: null,
     },
     {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "pronouns",
-      "storageKey": null
-    }
+      alias: null,
+      args: null,
+      kind: 'ScalarField',
+      name: 'pronouns',
+      storageKey: null,
+    },
   ],
-  "type": "User",
-  "abstractKey": null
+  type: 'User',
+  abstractKey: null,
 };
 
-(node as any).hash = "2ab3aac12296a6862ef7ba5837b232aa";
+(node as any).hash = '2ab3aac12296a6862ef7ba5837b232aa';
 
 export default node;

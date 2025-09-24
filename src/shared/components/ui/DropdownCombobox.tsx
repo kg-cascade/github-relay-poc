@@ -59,14 +59,14 @@ export const ControlledCombobox: React.FC<ControlledComboboxProps> = ({
       inputValue={selectedValue ?? ''}
       onInputValueChange={handleInputChange}
     >
-      <Combobox.Label className="block text-sm font-medium text-white mb-1">
+      <Combobox.Label className="mb-1 block text-sm font-medium text-white">
         {label}
       </Combobox.Label>
 
       <Combobox.Control className="relative">
         <Combobox.Input
           placeholder={placeholder}
-          className="w-full rounded-md bg-zinc-800 text-white placeholder-zinc-400 py-2 pl-3 pr-10 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-sm"
+          className="w-full rounded-md border border-zinc-600 bg-zinc-800 py-2 pr-10 pl-3 text-sm text-white placeholder-zinc-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500 focus:outline-none"
         />
         <Combobox.Trigger className="absolute inset-y-0 right-0 flex items-center pr-3 text-zinc-400">
           ▼
@@ -93,7 +93,7 @@ export const ControlledCombobox: React.FC<ControlledComboboxProps> = ({
                 <Combobox.Item
                   key={item.value}
                   item={item}
-                  className="cursor-pointer select-none px-4 py-2 hover:bg-zinc-700 aria-selected:bg-cyan-600 aria-selected:text-white"
+                  className="cursor-pointer px-4 py-2 select-none hover:bg-zinc-700 aria-selected:bg-cyan-600 aria-selected:text-white"
                 >
                   <Combobox.ItemText>{item.label}</Combobox.ItemText>
                 </Combobox.Item>

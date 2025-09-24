@@ -1,0 +1,18 @@
+{
+  "save": "Enregistrer",
+  "cancel": "Annuler",
+  "edit": "Modifier",
+  "delete": "Supprimer",
+  "search": "Rechercher",
+  "loading": "Chargement...",
+  "noDataAvailable": "Aucune donnée disponible",
+
+  "userCount_0": "Aucun utilisateur",
+  "userCount_one": "{{count}} utilisateur",
+  "userCount_few": "{{count}} utilisateurs",
+  "userCount_many": "{{count}} utilisateurs",
+  "userCount_other": "{{count}} utilisateurs",
+
+  "typeHere": "Tapez ici...",
+  "welcome": "Bienvenue dans les traductions"
+}

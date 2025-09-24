@@ -10,14 +10,7 @@ const HoverCard: React.FC<HoverCardProps> = ({ children, content }) => {
   return (
     <ArkHoverCard.Root openDelay={100}>
       <ArkHoverCard.Trigger asChild>{children}</ArkHoverCard.Trigger>
-      <ArkHoverCard.Content
-        className="
-          absolute z-50 bg-gray-800 text-white p-2 rounded-2xl shadow-lg
-          data-[placement=top]:mb-2
-          data-[placement=bottom]:mt-2
-          data-[state=open]:animate-fade-in
-        "
-      >
+      <ArkHoverCard.Content className="data-[state=open]:animate-fade-in absolute z-50 rounded-2xl bg-gray-800 p-2 text-white shadow-lg data-[placement=bottom]:mt-2 data-[placement=top]:mb-2">
         {content}
       </ArkHoverCard.Content>
     </ArkHoverCard.Root>

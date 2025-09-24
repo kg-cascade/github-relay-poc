@@ -51,8 +51,8 @@ function RepoPage() {
 
   return (
     <Card>
-      <div className="flex flex-col sm:flex-row sm:items-center mb-4">
-        <Avatar.Root className="w-16 h-16 mb-4 sm:mr-4 sm:mb-0">
+      <div className="mb-4 flex flex-col sm:flex-row sm:items-center">
+        <Avatar.Root className="mb-4 h-16 w-16 sm:mr-4 sm:mb-0">
           <Avatar.Image
             className="rounded-full"
             src={repo.owner?.avatarUrl}
@@ -63,13 +63,13 @@ function RepoPage() {
           </Avatar.Fallback>
         </Avatar.Root>
         <div>
-          <h1 className="text-2xl font-bold text-foreground break-words">
+          <h1 className="text-foreground text-2xl font-bold break-words">
             {repo.nameWithOwner}
           </h1>
           <p className="text-gray-600">{repo.description}</p>
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row sm:items-center text-sm text-gray-500">
+      <div className="flex flex-col text-sm text-gray-500 sm:flex-row sm:items-center">
         <div className="mb-2 sm:mr-4 sm:mb-0">
           <strong>{repo.stargazerCount}</strong> stars
         </div>
