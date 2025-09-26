@@ -1,0 +1,11 @@
+{
+  "labels": {
+    "email": "Email",
+    "firstName": "First Name",
+    "submit": "Submit"
+  },
+  "errors": {
+    "emailInvalid": "Invalid email address",
+    "firstNameRequired": "First name is required"
+  }
+}

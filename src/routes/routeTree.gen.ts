@@ -13,6 +13,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Route as rootRouteImport } from './__root'
 import { Route as TranslationsIndexRouteImport } from './translations/index'
 import { Route as MyReposIndexRouteImport } from './my-repos/index'
+import { Route as ContactUsIndexRouteImport } from './contact-us/index'
 import { Route as UserNameIndexRouteImport } from './$userName/index'
 import { Route as RepoRepoIdRouteImport } from './repo/$repoId'
 import { Route as topReposLayoutRouteImport } from './(top-repos)/_layout'
@@ -33,6 +34,11 @@ const TranslationsIndexRoute = TranslationsIndexRouteImport.update({
 const MyReposIndexRoute = MyReposIndexRouteImport.update({
   id: '/my-repos/',
   path: '/my-repos/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactUsIndexRoute = ContactUsIndexRouteImport.update({
+  id: '/contact-us/',
+  path: '/contact-us/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const UserNameIndexRoute = UserNameIndexRouteImport.update({
@@ -65,6 +71,7 @@ export interface FileRoutesByFullPath {
   '/': typeof topReposLayoutIndexRoute
   '/repo/$repoId': typeof RepoRepoIdRoute
   '/$userName': typeof UserNameIndexRoute
+  '/contact-us': typeof ContactUsIndexRoute
   '/my-repos': typeof MyReposIndexRoute
   '/translations': typeof TranslationsIndexRoute
   '/developers': typeof topReposLayoutDevelopersIndexRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/repo/$repoId': typeof RepoRepoIdRoute
   '/$userName': typeof UserNameIndexRoute
+  '/contact-us': typeof ContactUsIndexRoute
   '/my-repos': typeof MyReposIndexRoute
   '/translations': typeof TranslationsIndexRoute
   '/': typeof topReposLayoutIndexRoute
@@ -83,6 +91,7 @@ export interface FileRoutesById {
   '/(top-repos)/_layout': typeof topReposLayoutRouteWithChildren
   '/repo/$repoId': typeof RepoRepoIdRoute
   '/$userName/': typeof UserNameIndexRoute
+  '/contact-us/': typeof ContactUsIndexRoute
   '/my-repos/': typeof MyReposIndexRoute
   '/translations/': typeof TranslationsIndexRoute
   '/(top-repos)/_layout/': typeof topReposLayoutIndexRoute
@@ -94,6 +103,7 @@ export interface FileRouteTypes {
     | '/'
     | '/repo/$repoId'
     | '/$userName'
+    | '/contact-us'
     | '/my-repos'
     | '/translations'
     | '/developers'
@@ -101,6 +111,7 @@ export interface FileRouteTypes {
   to:
     | '/repo/$repoId'
     | '/$userName'
+    | '/contact-us'
     | '/my-repos'
     | '/translations'
     | '/'
@@ -111,6 +122,7 @@ export interface FileRouteTypes {
     | '/(top-repos)/_layout'
     | '/repo/$repoId'
     | '/$userName/'
+    | '/contact-us/'
     | '/my-repos/'
     | '/translations/'
     | '/(top-repos)/_layout/'
@@ -121,6 +133,7 @@ export interface RootRouteChildren {
   topReposRoute: typeof topReposRouteWithChildren
   RepoRepoIdRoute: typeof RepoRepoIdRoute
   UserNameIndexRoute: typeof UserNameIndexRoute
+  ContactUsIndexRoute: typeof ContactUsIndexRoute
   MyReposIndexRoute: typeof MyReposIndexRoute
   TranslationsIndexRoute: typeof TranslationsIndexRoute
 }
@@ -146,6 +159,13 @@ declare module '@tanstack/react-router' {
       path: '/my-repos'
       fullPath: '/my-repos'
       preLoaderRoute: typeof MyReposIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact-us/': {
+      id: '/contact-us/'
+      path: '/contact-us'
+      fullPath: '/contact-us'
+      preLoaderRoute: typeof ContactUsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/$userName/': {
@@ -216,6 +236,7 @@ const rootRouteChildren: RootRouteChildren = {
   topReposRoute: topReposRouteWithChildren,
   RepoRepoIdRoute: RepoRepoIdRoute,
   UserNameIndexRoute: UserNameIndexRoute,
+  ContactUsIndexRoute: ContactUsIndexRoute,
   MyReposIndexRoute: MyReposIndexRoute,
   TranslationsIndexRoute: TranslationsIndexRoute,
 }

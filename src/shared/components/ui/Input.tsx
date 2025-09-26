@@ -9,7 +9,7 @@ export default function Input({ label, className, ...props }: InputProps) {
   return (
     <div className="w-full">
       {label && (
-        <label className="block text-sm/6 font-medium text-gray-900">
+        <label className="block text-sm/6 font-medium text-gray-900 dark:text-white">
           {label}
         </label>
       )}

@@ -1,0 +1,11 @@
+{
+  "labels": {
+    "email": "Email",
+    "firstName": "Imię",
+    "submit": "Wyślij"
+  },
+  "errors": {
+    "emailInvalid": "Nieprawidłowy adres email",
+    "firstNameRequired": "Imię jest wymagane"
+  }
+}

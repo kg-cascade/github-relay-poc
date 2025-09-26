@@ -7,7 +7,7 @@
   "loading": "Loading...",
   "noDataAvailable": "No data available",
 
-  "userCount_0": "No users",
+  "userCount_zero": "No users",
   "userCount_one": "{{count}} user",
   "userCount_few": "{{count}} users",
   "userCount_many": "{{count}} users",

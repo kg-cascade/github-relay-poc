@@ -9,6 +9,7 @@ import {
   Menu as MenuIcon,
   BookA,
   Star,
+  UserPen,
   type LucideIcon,
 } from 'lucide-react';
 import { Suspense } from 'react';
@@ -24,7 +25,6 @@ import { LoggedUser } from './-components/LoggedUser/LoggedUser';
 import LoggedUserSkeleton from './-components/LoggedUser/LoggedUserSkeleton';
 import { type FileRouteTypes } from './routeTree.gen';
 
-// Typ kontekstu routera
 interface RouterContext {
   relayEnvironment: RelayEnvironmentType;
 }
@@ -45,6 +45,12 @@ const navigation: NavigationItem[] = [
     href: '/translations',
     icon: BookA,
     current: false,
+  },
+  {
+    name: 'Contact Us',
+    href: '/contact-us',
+    icon: UserPen,
+    current: false /*  */,
   },
   // {
   //   name: 'Calendar',
@@ -76,7 +82,6 @@ const RootQuery = graphql`
   }
 `;
 
-// --- Komponent RootLayout ---
 export default function RootLayout() {
   const { preloadedQuery } = useLoaderData({
     from: '__root__',

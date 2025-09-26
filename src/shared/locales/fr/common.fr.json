@@ -7,7 +7,7 @@
   "loading": "Chargement...",
   "noDataAvailable": "Aucune donnée disponible",
 
-  "userCount_0": "Aucun utilisateur",
+  "userCount_zero": "Aucun utilisateur",
   "userCount_one": "{{count}} utilisateur",
   "userCount_few": "{{count}} utilisateurs",
   "userCount_many": "{{count}} utilisateurs",
